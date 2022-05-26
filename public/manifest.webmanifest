@@ -2,7 +2,7 @@
   "name": "Slangespillet",
   "short_name": "Slangespillet",
   "theme_color": "#0066ff",
-  "background_color": "#5599ff",
+  "background_color": "#e7f5ff",
   "display": "fullscreen",
   "scope": "./",
   "start_url": "./",

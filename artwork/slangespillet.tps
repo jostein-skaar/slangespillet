@@ -9,7 +9,7 @@
         <array>
             <struct type="AutoSDSettings">
                 <key>scale</key>
-                <double>0.333333</double>
+                <double>0.25</double>
                 <key>extension</key>
                 <string>@1</string>
                 <key>spriteFilter</key>
@@ -26,7 +26,7 @@
             </struct>
             <struct type="AutoSDSettings">
                 <key>scale</key>
-                <double>0.666667</double>
+                <double>0.5</double>
                 <key>extension</key>
                 <string>@2</string>
                 <key>spriteFilter</key>
@@ -43,7 +43,7 @@
             </struct>
             <struct type="AutoSDSettings">
                 <key>scale</key>
-                <double>1</double>
+                <double>0.75</double>
                 <key>extension</key>
                 <string>@3</string>
                 <key>spriteFilter</key>
@@ -201,7 +201,7 @@
             <key>scaleMode</key>
             <enum type="ScaleMode">Smooth</enum>
             <key>extrude</key>
-            <uint>1</uint>
+            <uint>0</uint>
             <key>trimThreshold</key>
             <uint>1</uint>
             <key>trimMargin</key>
@@ -219,10 +219,10 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">assets/hero/hero-1.png</key>
-            <key type="filename">assets/hero/hero-2.png</key>
-            <key type="filename">assets/hero/hero-3.png</key>
-            <key type="filename">assets/hero/hero-4.png</key>
+            <key type="filename">assets/hero/hero-001.png</key>
+            <key type="filename">assets/hero/hero-002.png</key>
+            <key type="filename">assets/hero/hero-003.png</key>
+            <key type="filename">assets/hero/hero-004.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -231,16 +231,16 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>53,41,105,83</rect>
+                <rect>70,55,140,110</rect>
                 <key>scale9Paddings</key>
-                <rect>53,41,105,83</rect>
+                <rect>70,55,140,110</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
         </map>
         <key>fileList</key>
         <array>
-            <filename>assets</filename>
+            <filename>assets/hero</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

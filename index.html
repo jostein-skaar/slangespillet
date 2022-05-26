@@ -13,11 +13,18 @@
     <!-- AUTOMATISK FERDIG -->
   </head>
   <body>
-    <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
 
     <div id="loader" style="height: 100vh; display: flex; justify-content: center; align-items: center">
       <img src="loader.svg" style="display: block; width: 75vh; height: 75vw" />
     </div>
+    <div id="home" style="display: none">
+      <h1>Arons slangespill</h1>
+      <p>Bli med sneglen på eventyr, men pass deg for de lumske slangene.</p>
+      <p>Trykk for å hoppe. Trykk en gang til for å dobbelthoppe.</p>
+      <button class="start">Start</button>
+    </div>
+    <div id="game" style="display: none"></div>
+    <div style="position: absolute; bottom: 10px; right: 10px; padding: 3px; opacity: 0.5; font-size: 0.6rem">{VERSJON}</div>
   </body>
 </html>
