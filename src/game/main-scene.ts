@@ -43,7 +43,7 @@ export class MainScene extends Phaser.Scene {
 
     console.log('this.map.widthInPixels', this.map.widthInPixels);
 
-    const platformLayer = this.map.createLayer(`level0${this.level}`, [tiles]);
+    const platformLayer = this.map.createLayer(`level${this.level}`, [tiles]);
     platformLayer.setCollisionByProperty({ ground: true });
 
     this.presentsGroup = this.physics.add.group({
@@ -199,7 +199,7 @@ export class MainScene extends Phaser.Scene {
   }
 
   private updateText() {
-    let text = 'Level 0';
+    let text = `Level ${this.level}`;
     text += `\nPakker: ${this.collectedPresents}`;
     if (this.collectedPresentsBest > 0) {
       text += `\nRekord: ${this.collectedPresentsBest}`;
