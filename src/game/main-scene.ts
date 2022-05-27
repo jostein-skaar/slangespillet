@@ -146,25 +146,29 @@ export class MainScene extends Phaser.Scene {
       yoyo: true,
       repeat: -1,
     });
-    let countdownCounter = 1;
-    this.countdownText.setText(countdownCounter.toString());
-    const countdownIntervalId = setInterval(() => {
-      countdownCounter--;
+    let countdownCounter = 0;
+    if (countdownCounter > 0) {
       this.countdownText.setText(countdownCounter.toString());
-      console.log(countdownCounter);
-      if (countdownCounter <= 0) {
-        this.countdownText.setVisible(false);
-        this.startGame();
-        clearInterval(countdownIntervalId);
-      }
-    }, 1000);
+      const countdownIntervalId = setInterval(() => {
+        countdownCounter--;
+        this.countdownText.setText(countdownCounter.toString());
+        console.log(countdownCounter);
+        if (countdownCounter <= 0) {
+          this.countdownText.setVisible(false);
+          this.startGame();
+          clearInterval(countdownIntervalId);
+        }
+      }, 1000);
+
+      this.isPaused = true;
+      this.physics.pause();
+    } else {
+      this.startGame();
+    }
 
     this.collectedPresents = 0;
     this.isDead = false;
     this.updateText();
-
-    this.isPaused = true;
-    this.physics.pause();
   }
 
   update(): void {

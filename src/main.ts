@@ -61,4 +61,8 @@ window.onload = () => {
   loader.style.display = 'none';
   home.style.display = 'block';
   game.style.display = 'none';
+
+  setTimeout(() => {
+    startGame();
+  }, 100);
 };

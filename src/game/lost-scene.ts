@@ -31,11 +31,13 @@ export class LostScene extends Phaser.Scene {
       .setOrigin(0.5, 0.5);
 
     const goToHomeTimeout = setTimeout(() => {
-      this.scene.stop();
-      const home = document.querySelector<HTMLDivElement>('#home')!;
-      const game = document.querySelector<HTMLDivElement>('#game')!;
-      home.style.display = 'block';
-      game.style.display = 'none';
+      this.scene.start('main-scene', { level: this.level });
+
+      // this.scene.stop();
+      // const home = document.querySelector<HTMLDivElement>('#home')!;
+      // const game = document.querySelector<HTMLDivElement>('#game')!;
+      // home.style.display = 'block';
+      // game.style.display = 'none';
     }, 5000);
 
     setTimeout(() => {
