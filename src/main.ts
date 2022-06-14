@@ -1,7 +1,7 @@
 import './style.css';
 
 import Phaser from 'phaser';
-import { createGameConfig } from './game/config';
+import { createGameConfig } from './config';
 import { reloadWhenResize } from '@jostein-skaar/common-game';
 
 reloadWhenResize(window);
@@ -38,7 +38,7 @@ if (width < window.innerWidth) {
 
 console.table({ width, height, scaleModePhaser, centerModePhaser });
 
-const gameConfig = createGameConfig(width, height, scaleModePhaser, centerModePhaser, pixelRatio, isDebug);
+const gameConfig = createGameConfig(width, height, scaleModePhaser, centerModePhaser, isDebug);
 const phaserGame = new Phaser.Game(gameConfig);
 
 document.querySelector<HTMLDivElement>('button.start')!.addEventListener('click', () => {
@@ -46,7 +46,7 @@ document.querySelector<HTMLDivElement>('button.start')!.addEventListener('click'
 });
 
 function startGame() {
-  phaserGame.scene.start('main-scene', { playerName: 'anonym' });
+  // phaserGame.scene.start('main-scene', { playerName: 'anonym' });
   const home = document.querySelector<HTMLDivElement>('#home')!;
   const game = document.querySelector<HTMLDivElement>('#game')!;
   home.style.display = 'none';

@@ -1,8 +1,20 @@
 import { adjustForPixelRatio } from '@jostein-skaar/common-game';
+import { addComponent, addEntity, createWorld, IWorld, System } from 'bitecs';
 import Phaser from 'phaser';
+import { PlayerComponent, InputComponent, PositionComponent, SpriteComponent, VelocityComponent } from '../components';
+import { preload } from '../preload';
+import { createMovementSystem } from '../systems/movement-system';
+import { createPlayerSystem } from '../systems/player-system';
+import { createSpriteInfoSystem, createSpriteSystem } from '../systems/sprite-system';
 
 export class MainScene extends Phaser.Scene {
   playerName!: string;
+
+  world!: IWorld;
+  playerSystem!: System;
+  movementSystem!: System;
+  spriteSystem!: System;
+  spriteInfoSystem!: System;
 
   groundLayer: any;
   bredde!: number;
@@ -12,8 +24,6 @@ export class MainScene extends Phaser.Scene {
   presentsGroup!: Phaser.Physics.Arcade.Group;
   enemyGroup!: Phaser.Physics.Arcade.Group;
   hasJumpedTwice: boolean | undefined;
-  backgroundMountains!: Phaser.GameObjects.TileSprite;
-  backgroundSnow!: Phaser.GameObjects.TileSprite;
   collectedPresents = 0;
   collectedPresentsBest = 0;
   collectedPresentsText!: Phaser.GameObjects.Text;
@@ -35,8 +45,38 @@ export class MainScene extends Phaser.Scene {
     this.collectedPresentsBest = tempBestScore === null ? 0 : +tempBestScore;
   }
 
+  preload(): void {
+    this.load.on('complete', () => {
+      console.log('complete');
+      this.isPaused = false;
+      this.physics.resume();
+    });
+
+    preload(this);
+  }
+
   create(): void {
     const tilesSize = adjustForPixelRatio(32);
+
+    this.world = createWorld();
+    this.playerSystem = createPlayerSystem(this);
+    this.movementSystem = createMovementSystem();
+    const heroGroup = this.physics.add.group();
+    this.spriteSystem = createSpriteSystem(heroGroup, ['hero-001.png']);
+    this.spriteInfoSystem = createSpriteInfoSystem();
+
+    const heroEntity = addEntity(this.world);
+    addComponent(this.world, PlayerComponent, heroEntity);
+    addComponent(this.world, PositionComponent, heroEntity);
+    addComponent(this.world, VelocityComponent, heroEntity);
+    addComponent(this.world, SpriteComponent, heroEntity);
+    addComponent(this.world, InputComponent, heroEntity);
+
+    SpriteComponent.texture[heroEntity] = 0;
+    PositionComponent.x[heroEntity] = adjustForPixelRatio(70) / 2 + adjustForPixelRatio(10);
+    PositionComponent.y[heroEntity] = this.hoyde - adjustForPixelRatio(55) / 2 - tilesSize;
+
+    this.spriteSystem(this.world);
 
     this.map = this.make.tilemap({ key: 'map' });
     const tiles = this.map.addTilesetImage('tiles', 'tiles');
@@ -69,8 +109,7 @@ export class MainScene extends Phaser.Scene {
       }
     }
 
-    this.hero = this.physics.add.sprite(0, 0, 'sprites', 'hero-001.png');
-    this.hero.setPosition(this.hero.width / 2 + adjustForPixelRatio(10), this.hoyde - this.hero.height / 2 - tilesSize);
+    this.hero = heroGroup.getFirstAlive();
 
     this.hero.anims.create({
       key: 'stand',
@@ -91,33 +130,34 @@ export class MainScene extends Phaser.Scene {
       frameRate: 6,
     });
 
-    this.input.on('pointerdown', () => {
-      if (this.hero.body.onFloor()) {
-        this.hero.setVelocityY(adjustForPixelRatio(-200));
-        this.hasJumpedTwice = false;
-        console.log('HOPP: onFloor()');
-      } else if (this.hasJumpedTwice === false) {
-        this.hero.setVelocityY(adjustForPixelRatio(-200));
-        this.hasJumpedTwice = true;
-        console.log('HOPP: hasJumpedTwice === false');
-      } else {
-        console.log('HOPP: else');
-      }
-    });
+    // this.input.on('pointerdown', () => {
+    //   if (this.hero.body.onFloor()) {
+    //     this.hero.setVelocityY(adjustForPixelRatio(-200));
+    //     this.hasJumpedTwice = false;
+    //     console.log('HOPP: onFloor()');
+    //   } else if (this.hasJumpedTwice === false) {
+    //     this.hero.setVelocityY(adjustForPixelRatio(-200));
+    //     this.hasJumpedTwice = true;
+    //     console.log('HOPP: hasJumpedTwice === false');
+    //   } else {
+    //     console.log('HOPP: else');
+    //   }
+    // });
 
     this.cameras.main.startFollow(this.hero);
     this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 
     this.physics.add.collider(this.hero, platformLayer);
+    this.physics.add.collider(heroGroup, platformLayer);
 
-    this.physics.add.overlap(this.hero, this.presentsGroup, (_helt, present) => {
+    this.physics.add.overlap(heroGroup, this.presentsGroup, (_helt, present) => {
       //@ts-ignore
       present.disableBody(true, true);
       this.collectedPresents += 1;
       this.updateText();
     });
 
-    this.physics.add.overlap(this.hero, this.enemyGroup, (_helt, _enemy) => {
+    this.physics.add.overlap(heroGroup, this.enemyGroup, (_helt, _enemy) => {
       this.lose();
     });
 
@@ -172,13 +212,10 @@ export class MainScene extends Phaser.Scene {
   }
 
   update(): void {
-    if (this.useParallax) {
-      // Because we use background@1-versions (pixelRatio=1), we need to compensate the scrolling.
-      this.backgroundMountains.tilePositionX = (this.cameras.main.scrollX * 0.2) / adjustForPixelRatio(1);
-      this.backgroundSnow.tilePositionX = (this.cameras.main.scrollX * 0.6) / adjustForPixelRatio(1);
-    }
-
-    this.hero.setVelocityX(adjustForPixelRatio(100));
+    this.playerSystem(this.world);
+    this.movementSystem(this.world);
+    this.spriteSystem(this.world);
+    this.spriteInfoSystem(this.world);
 
     // Animasjoner.
     if (!this.isPaused) {

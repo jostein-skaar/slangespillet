@@ -1,21 +1,20 @@
-import { LostScene } from './lost-scene';
-import { MainScene } from './main-scene';
-import { PreloadScene } from './preload-scene';
+import { adjustForPixelRatio } from '@jostein-skaar/common-game';
+import { LostScene } from './scenes/lost-scene';
+import { MainScene } from './scenes/main-scene';
 
 export function createGameConfig(
   width: number,
   height: number,
   scalingModePhaser: Phaser.Scale.ScaleModes,
   centerModePhaser: Phaser.Scale.Center,
-  pixelRatio: number,
   isDebug: boolean
 ): Phaser.Types.Core.GameConfig {
   const gameConfig: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
     // type: Phaser.CANVAS,
-    scene: [PreloadScene, MainScene, LostScene],
-    width: width * pixelRatio,
-    height: height * pixelRatio,
+    scene: [MainScene, LostScene],
+    width: adjustForPixelRatio(width),
+    height: adjustForPixelRatio(height),
     backgroundColor: 0x87ceeb,
     autoFocus: true,
     parent: 'game',
@@ -31,7 +30,7 @@ export function createGameConfig(
     physics: {
       default: 'arcade',
       arcade: {
-        gravity: { y: 300 * pixelRatio },
+        gravity: { y: adjustForPixelRatio(300) },
         debug: isDebug,
       },
     },
@@ -48,7 +47,7 @@ export function createGameConfig(
       // autoCenter: Phaser.Scale.Center.CENTER_VERTICALLY,
       // expandParent: true
 
-      zoom: 1 / pixelRatio,
+      zoom: 1 / adjustForPixelRatio(1),
       // autoRound: true,
     },
   };
