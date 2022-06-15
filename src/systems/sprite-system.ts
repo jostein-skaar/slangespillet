@@ -36,6 +36,10 @@ export function createSpriteSystem(group: Phaser.Physics.Arcade.Group, textures:
       if (VelocityComponent.shouldUpdateY[eid] === 1) {
         sprite.setVelocityY(VelocityComponent.y[eid]);
       }
+
+      // We are using physics to change position, sync this back to the component.
+      PositionComponent.x[eid] = sprite.x;
+      PositionComponent.y[eid] = sprite.y;
     }
 
     const entitiesExited = spriteQueryExit(world);

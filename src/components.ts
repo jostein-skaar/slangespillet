@@ -4,7 +4,7 @@ export const PlayerComponent = defineComponent({
   isOnGround: Types.ui8,
   isMoving: Types.ui8,
   isHurting: Types.ui8,
-  wantingToJumpTime: Types.ui32,
+  jumpTime: Types.ui32,
 });
 
 export const PositionComponent = defineComponent({

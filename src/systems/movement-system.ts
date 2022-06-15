@@ -20,7 +20,7 @@ export function createMovementSystem() {
 
     for (let i = 0; i < entities.length; ++i) {
       const eid = entities[i];
-
+      console.log(PositionComponent.y[eid]);
       VelocityComponent.x[eid] = speedX;
       VelocityComponent.y[eid] = speedY;
       VelocityComponent.shouldUpdateY[eid] = InputComponent.isJumping[eid];
