@@ -1,6 +1,5 @@
 import { adjustForPixelRatio } from '@jostein-skaar/common-game';
-import { LostScene } from './scenes/lost-scene';
-import { MainScene } from './scenes/main-scene';
+import { MainScene } from './main-scene';
 
 export function createGameConfig(
   width: number,
@@ -12,7 +11,7 @@ export function createGameConfig(
   const gameConfig: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
     // type: Phaser.CANVAS,
-    scene: [MainScene, LostScene],
+    scene: MainScene,
     width: adjustForPixelRatio(width),
     height: adjustForPixelRatio(height),
     backgroundColor: 0x87ceeb,

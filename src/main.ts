@@ -39,7 +39,8 @@ if (width < window.innerWidth) {
 console.table({ width, height, scaleModePhaser, centerModePhaser });
 
 const gameConfig = createGameConfig(width, height, scaleModePhaser, centerModePhaser, isDebug);
-const phaserGame = new Phaser.Game(gameConfig);
+// const phaserGame = new Phaser.Game(gameConfig);
+new Phaser.Game(gameConfig);
 
 document.querySelector<HTMLDivElement>('button.start')!.addEventListener('click', () => {
   startGame();
