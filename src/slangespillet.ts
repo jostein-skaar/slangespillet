@@ -1,23 +1,7 @@
 import { adjustForPixelRatio } from '@jostein-skaar/common-game';
-import { GameState } from './game';
-import { Score } from './highscore';
+import { Score } from './move-to-npm/score';
 
 let textElement: Phaser.GameObjects.Text;
-
-export function startGame(scene: Phaser.Scene, gameState: GameState, score: Score) {
-  if (textElement !== undefined) {
-    textElement.setVisible(false);
-  }
-
-  // hero
-  // enemies
-  // presents
-
-  score.currentScore = 0;
-  gameState.isDead = false;
-  gameState.isPaused = false;
-  scene.physics.resume();
-}
 
 export function loseGame(scene: Phaser.Scene, score: Score, startGameFn: () => void) {
   if (scene.physics.world.isPaused) {
@@ -64,16 +48,16 @@ export function loseGame(scene: Phaser.Scene, score: Score, startGameFn: () => v
     startGameFn();
   };
 
-  const goToHomeFn = () => {
-    scene.input.off('pointerdown', resetAndStartFn);
-    console.log('Go to home');
-    // TODO: Goto home screen
-    // this.scene.stop();
-    // const home = document.querySelector<HTMLDivElement>('#home')!;
-    // const game = document.querySelector<HTMLDivElement>('#game')!;
-    // home.style.display = 'block';
-    // game.style.display = 'none';
-  };
+  // const goToHomeFn = () => {
+  //   scene.input.off('pointerdown', resetAndStartFn);
+  //   console.log('Go to home');
+  //   // TODO: Goto home screen
+  //   // this.scene.stop();
+  //   // const home = document.querySelector<HTMLDivElement>('#home')!;
+  //   // const game = document.querySelector<HTMLDivElement>('#game')!;
+  //   // home.style.display = 'block';
+  //   // game.style.display = 'none';
+  // };
 
   const goToHomeTimeout = setTimeout(resetAndStartFn, 5000);
 
@@ -82,9 +66,17 @@ export function loseGame(scene: Phaser.Scene, score: Score, startGameFn: () => v
   }, 500);
 }
 
-export function createScoreText(scene: Phaser.Scene, score: Score): void {
-  const text = getText(score);
-  const textElement = scene.add.text(adjustForPixelRatio(16), adjustForPixelRatio(16), text, {
+export function createScoreText(scene: Phaser.Scene): (score: Score) => void {
+  const getText = (score: Score) => {
+    let text = `Level ${score.level}`;
+    text += `\nPakker: ${score.currentScore}`;
+    if (score.highScore > 0) {
+      text += `\nRekord: ${score.highScore}`;
+    }
+    return text;
+  };
+
+  const textElement = scene.add.text(adjustForPixelRatio(16), adjustForPixelRatio(16), '', {
     fontSize: `${adjustForPixelRatio(24)}px`,
     color: '#000',
     backgroundColor: '#ccc',
@@ -92,21 +84,9 @@ export function createScoreText(scene: Phaser.Scene, score: Score): void {
   });
   textElement.setScrollFactor(0, 0);
 
-  score.updateScoreText = () => {
+  const updateScoreText = (score: Score) => {
     textElement.setText(getText(score));
   };
-}
 
-function getText(score: Score) {
-  let text = `Level ${score.level}`;
-  text += `\nPakker: ${score.currentScore}`;
-  if (score.bestScore > 0) {
-    text += `\nRekord: ${score.bestScore}`;
-  }
-  return text;
-}
-
-export interface Position {
-  x: number;
-  y: number;
+  return updateScoreText;
 }

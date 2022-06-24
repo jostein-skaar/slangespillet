@@ -1,5 +1,3 @@
-import { adjustForPixelRatio } from '@jostein-skaar/common-game';
-
 export function createLevel(
   map: Phaser.Tilemaps.Tilemap,
   level: number,
@@ -47,5 +45,5 @@ function resetPresents(map: Phaser.Tilemaps.Tilemap, platformLayer: Phaser.Tilem
 }
 
 function resetEnemies(map: Phaser.Tilemaps.Tilemap, platformLayer: Phaser.Tilemaps.TilemapLayer, group: Phaser.Physics.Arcade.Group) {
-  console.log('resetEnemies');
+  console.log('resetEnemies', map, platformLayer, group);
 }

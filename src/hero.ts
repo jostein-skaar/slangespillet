@@ -1,6 +1,6 @@
 import { adjustForPixelRatio } from '@jostein-skaar/common-game';
-import { jumpWithLongPress } from './jump-with-long-press';
-import { Position } from './slangespillet';
+import { jumpWithLongPress } from './move-to-npm/jump-with-long-press';
+import { Position } from './move-to-npm/position';
 
 export class Hero {
   // TODO:} extends Phaser.Physics.Arcade.Sprite {
