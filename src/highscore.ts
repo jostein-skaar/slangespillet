@@ -24,6 +24,9 @@ export function createHighscore(baseKey: string, level: number): Score {
     updateScoreText: () => {
       console.warn('Missing updateScoreText()');
     },
+    reset: () => {
+      score.currentScore = 0;
+    },
   };
 
   return score;
@@ -36,4 +39,5 @@ export interface Score {
   getHighScore: () => number;
   updateHighScore: (score: number) => void;
   updateScoreText: () => void;
+  reset: () => void;
 }

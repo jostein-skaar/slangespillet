@@ -1,6 +1,7 @@
 import { defineComponent, Types } from 'bitecs';
 
 export const PlayerComponent = defineComponent({
+  isPaused: Types.ui8,
   isOnGround: Types.ui8,
   isMoving: Types.ui8,
   isHurting: Types.ui8,

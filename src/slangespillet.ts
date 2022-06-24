@@ -19,13 +19,17 @@ export function startGame(scene: Phaser.Scene, gameState: GameState, score: Scor
   scene.physics.resume();
 }
 
-export function loseGame(scene: Phaser.Scene, gameState: GameState, score: Score, startGameFn: () => void) {
-  if (gameState.isDead) {
+export function loseGame(scene: Phaser.Scene, score: Score, startGameFn: () => void) {
+  if (scene.physics.world.isPaused) {
     return;
   }
 
+  const reset = () => {
+    scene.cameras.main.setBackgroundColor();
+    textElement.setVisible(false);
+  };
+
   scene.physics.pause();
-  gameState.isDead = true;
 
   scene.cameras.main.setBackgroundColor(0xbababa);
 
@@ -53,6 +57,7 @@ export function loseGame(scene: Phaser.Scene, gameState: GameState, score: Score
 
   const goToHomeTimeout = setTimeout(() => {
     // Temp: start automatic
+    reset();
     startGameFn();
     // TODO: Goto home screen
     // this.scene.stop();
@@ -67,6 +72,7 @@ export function loseGame(scene: Phaser.Scene, gameState: GameState, score: Score
       clearTimeout(goToHomeTimeout);
       console.log('Start again');
       // startGame(scene, gameState, score);
+      reset();
       startGameFn();
     });
   }, 500);

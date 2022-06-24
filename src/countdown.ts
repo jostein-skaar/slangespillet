@@ -3,6 +3,11 @@
 import { adjustForPixelRatio } from '@jostein-skaar/common-game';
 
 export function createCountdown(scene: Phaser.Scene, count: number, color: string, countdownFinishedCallback: () => void) {
+  scene.physics.pause();
+  const countdownFinished = () => {
+    scene.physics.resume();
+    countdownFinishedCallback();
+  };
   const countdownText = scene.add
     .text(scene.scale.width / 2, scene.scale.height / 2, '', {
       fontSize: `${adjustForPixelRatio(200)}px`,
@@ -23,7 +28,7 @@ export function createCountdown(scene: Phaser.Scene, count: number, color: strin
   });
 
   if (count === 0) {
-    countdownFinishedCallback();
+    countdownFinished();
     return;
   }
 
@@ -35,7 +40,7 @@ export function createCountdown(scene: Phaser.Scene, count: number, color: strin
     if (count <= 0) {
       countdownText.setVisible(false);
       clearInterval(countdownIntervalId);
-      countdownFinishedCallback();
+      countdownFinished();
     }
   }, 1000);
 }
