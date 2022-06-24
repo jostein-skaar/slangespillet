@@ -1,29 +1,42 @@
-import { addComponent, addEntity, IWorld } from 'bitecs';
-import { PlayerComponent, PositionComponent, VelocityComponent, SpriteComponent, InputComponent } from './components';
-import { Ecs } from './ecs';
+import { adjustForPixelRatio } from '@jostein-skaar/common-game';
+import { jumpWithLongPress } from './jump-with-long-press';
 import { Position } from './slangespillet';
 
 export class Hero {
-  sprite!: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
+  // TODO:} extends Phaser.Physics.Arcade.Sprite {
+  scene: Phaser.Scene;
   width: number;
   height: number;
   startPosition: Position;
+  sprite!: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
+  jumpMethod: () => boolean;
   isDead = false;
+  speedX = adjustForPixelRatio(100);
+  speedY = adjustForPixelRatio(-200);
 
-  constructor(ecs: Ecs, width: number, height: number, startPositionInLevel: Position) {
-    this.width = width;
-    this.height = height;
+  constructor(scene: Phaser.Scene, startPositionInLevel: Position) {
+    this.scene = scene;
+    this.width = adjustForPixelRatio(70);
+    this.height = adjustForPixelRatio(55);
     this.startPosition = { x: startPositionInLevel.x + this.width / 2, y: startPositionInLevel.y - this.height / 2 };
 
-    this.createEntity(ecs.world);
-    ecs.heroSpriteSystem(ecs.world);
-    this.sprite = ecs.heroGroup.getFirstAlive();
+    this.sprite = scene.physics.add.sprite(this.startPosition.x, this.startPosition.y, 'sprites', 'hero-001.png');
     this.createAnimations();
+
+    this.jumpMethod = jumpWithLongPress(scene, this.sprite);
   }
 
   reset() {
     this.isDead = false;
     this.sprite.setPosition(this.startPosition.x, this.startPosition.y);
+  }
+
+  update() {
+    this.updateAnimations(this.scene.physics.world.isPaused);
+    this.sprite.setVelocityX(this.speedX);
+    if (this.jumpMethod()) {
+      this.sprite.setVelocityY(this.speedY);
+    }
   }
 
   private createAnimations() {
@@ -47,7 +60,7 @@ export class Hero {
     });
   }
 
-  updateAnimations(isPaused: boolean) {
+  private updateAnimations(isPaused: boolean) {
     if (this.isDead) {
       this.sprite.setTint(0xff0000);
       this.sprite.play('stand', true);
@@ -64,18 +77,5 @@ export class Hero {
     } else {
       this.sprite.play('stand', true);
     }
-  }
-
-  private createEntity(world: IWorld) {
-    const heroEntity = addEntity(world);
-    addComponent(world, PlayerComponent, heroEntity);
-    addComponent(world, PositionComponent, heroEntity);
-    addComponent(world, VelocityComponent, heroEntity);
-    addComponent(world, SpriteComponent, heroEntity);
-    addComponent(world, InputComponent, heroEntity);
-
-    SpriteComponent.texture[heroEntity] = 0;
-    PositionComponent.x[heroEntity] = this.startPosition.x;
-    PositionComponent.y[heroEntity] = this.startPosition.y;
   }
 }

@@ -55,26 +55,30 @@ export function loseGame(scene: Phaser.Scene, score: Score, startGameFn: () => v
     textElement.setVisible(true);
   }
 
-  const goToHomeTimeout = setTimeout(() => {
-    // Temp: start automatic
+  const resetAndStartFn = () => {
+    scene.input.off('pointerdown', resetAndStartFn);
+    clearTimeout(goToHomeTimeout);
+    console.log('Start again');
+    // startGame(scene, gameState, score);
     reset();
     startGameFn();
+  };
+
+  const goToHomeFn = () => {
+    scene.input.off('pointerdown', resetAndStartFn);
+    console.log('Go to home');
     // TODO: Goto home screen
     // this.scene.stop();
     // const home = document.querySelector<HTMLDivElement>('#home')!;
     // const game = document.querySelector<HTMLDivElement>('#game')!;
     // home.style.display = 'block';
     // game.style.display = 'none';
-  }, 5000);
+  };
+
+  const goToHomeTimeout = setTimeout(resetAndStartFn, 5000);
 
   setTimeout(() => {
-    scene.input.once('pointerdown', () => {
-      clearTimeout(goToHomeTimeout);
-      console.log('Start again');
-      // startGame(scene, gameState, score);
-      reset();
-      startGameFn();
-    });
+    scene.input.once('pointerdown', resetAndStartFn);
   }, 500);
 }
 
