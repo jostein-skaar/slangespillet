@@ -5,7 +5,7 @@
 			"format": "RGBA8888",
 			"size": {
 				"w": 212,
-				"h": 602
+				"h": 880
 			},
 			"scale": 0.75,
 			"frames": [
@@ -54,22 +54,22 @@
 				{
 					"filename": "hero-004.png",
 					"rotated": false,
-					"trimmed": true,
+					"trimmed": false,
 					"sourceSize": {
 						"w": 210,
 						"h": 165
 					},
 					"spriteSourceSize": {
 						"x": 0,
-						"y": 36,
+						"y": 0,
 						"w": 210,
-						"h": 99
+						"h": 165
 					},
 					"frame": {
 						"x": 1,
 						"y": 335,
 						"w": 210,
-						"h": 99
+						"h": 165
 					}
 				},
 				{
@@ -88,9 +88,51 @@
 					},
 					"frame": {
 						"x": 1,
-						"y": 436,
+						"y": 502,
 						"w": 205,
 						"h": 165
+					}
+				},
+				{
+					"filename": "hero-005.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 210
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 210
+					},
+					"frame": {
+						"x": 1,
+						"y": 669,
+						"w": 96,
+						"h": 210
+					}
+				},
+				{
+					"filename": "hero-006.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 210
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 210
+					},
+					"frame": {
+						"x": 99,
+						"y": 669,
+						"w": 96,
+						"h": 210
 					}
 				}
 			]
@@ -99,6 +141,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:eeb9be9299dcdc16bd48a43e23431cd8:a96895cd5b2e819e0a94e499097b16dd:4a9bf2ba9afc2827dfa178a3fc41fa73$"
+		"smartupdate": "$TexturePacker:SmartUpdate:1c034534a693efdfc969104ba611decb:5d24502fd26fea438e013cb5e93ef861:4a9bf2ba9afc2827dfa178a3fc41fa73$"
 	}
 }
