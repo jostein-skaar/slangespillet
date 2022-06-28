@@ -1,3 +1,4 @@
+import { adjustForPixelRatio } from '@jostein-skaar/common-game';
 import { Hero } from '../hero';
 
 enum ClimbingStates {
@@ -13,7 +14,7 @@ enum ClimbingStates {
 export class LadderClimbing {
   sprite: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
   hero: Hero;
-  speed = 80;
+  speed = adjustForPixelRatio(80);
   isHappening = false;
   isClimbing = false;
   direction = 0;
