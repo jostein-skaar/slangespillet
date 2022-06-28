@@ -28,6 +28,8 @@ export class MainScene extends Phaser.Scene {
   }
 
   create(): void {
+    console.log('TILE_BIAS', this.physics.world.TILE_BIAS);
+
     this.score = new Score('slangespillet-best-score', 1, createScoreText(this));
 
     const startPositionInLevel: Position = {

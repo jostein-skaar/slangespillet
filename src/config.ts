@@ -30,6 +30,7 @@ export function createGameConfig(
       default: 'arcade',
       arcade: {
         gravity: { y: adjustForPixelRatio(300) },
+        tileBias: adjustForPixelRatio(32),
         debug: isDebug,
       },
     },
