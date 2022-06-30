@@ -7,6 +7,7 @@ import { Level } from './level';
 import { preload } from './preload';
 import { createScoreText, loseGame } from './slangespillet';
 import { Position } from './move-to-npm/position';
+import { Enemy } from './enemy';
 
 export class MainScene extends Phaser.Scene {
   map!: Phaser.Tilemaps.Tilemap;
@@ -45,7 +46,31 @@ export class MainScene extends Phaser.Scene {
     // const hero = new Hero(adjustForPixelRatio(70), adjustForPixelRatio(55), startPositionInLevel);
     this.hero = new Hero(this, startPositionInLevel);
 
+    const color = new Phaser.Display.Color();
+
+    const enemy1 = new Enemy(
+      this,
+      startPositionInLevel.x + 220,
+      startPositionInLevel.y - adjustForPixelRatio(50) / 2,
+      color.random(60, 240).color,
+      this.hero
+    );
+    this.level.enemyGroup.add(enemy1);
+
+    const enemy2 = new Enemy(
+      this,
+      startPositionInLevel.x + 330,
+      startPositionInLevel.y - adjustForPixelRatio(50) / 2,
+      color.random(60, 240).color,
+      this.hero
+    );
+    this.level.enemyGroup.add(enemy2);
+
+    const enemy3 = new Enemy(this, startPositionInLevel.x + 700, adjustForPixelRatio(200), color.random(60, 240).color, this.hero);
+    this.level.enemyGroup.add(enemy3);
+
     this.physics.add.collider(this.hero.sprite, this.level.platformLayer);
+    this.physics.add.collider(this.level.enemyGroup, this.level.platformLayer);
 
     // this.physics.add.overlap(this.hero.sprite, platformLayer, (_helt, tile: any) => {
     //   if (tile.properties['ladderup'] === true) {
@@ -58,6 +83,10 @@ export class MainScene extends Phaser.Scene {
     this.physics.add.overlap(this.hero.sprite, this.level.presentGroup, (_helt, present: any) => {
       present.disableBody(true, true);
       this.score.update(+1);
+    });
+
+    this.physics.add.overlap(this.hero.sprite, this.level.enemyGroup, (_helt, _enemy: any) => {
+      console.log('Au au');
     });
 
     this.physics.add.overlap(this.hero.sprite, this.level.ladderGroup, (_helt, hitBox: any) => {
@@ -89,8 +118,20 @@ export class MainScene extends Phaser.Scene {
     });
   }
 
+  enemyDirection = 1;
+
   update(_time: number, delta: number): void {
     this.hero.update(delta);
+
+    // this.enemy01.setVelocityX(this.enemyDirection * 40);
+
+    // if (this.enemyDirection === 1 && this.enemy01.x > this.hero.sprite.x + 500) {
+    //   this.enemyDirection = -1;
+    //   this.enemy01.flipX = true;
+    // } else if (this.enemyDirection === -1 && this.enemy01.x < this.hero.sprite.x) {
+    //   this.enemyDirection = 1;
+    //   this.enemy01.flipX = false;
+    // }
 
     if (this.hero.sprite.x > this.map.widthInPixels || this.hero.sprite.y > this.map.heightInPixels) {
       this.hero.isDead = true;

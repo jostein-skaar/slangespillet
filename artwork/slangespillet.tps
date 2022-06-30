@@ -207,6 +207,45 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">assets/enemy/enemy-body-001.png</key>
+            <key type="filename">assets/enemy/enemy-body-002.png</key>
+            <key type="filename">assets/enemy/enemy-eye-001.png</key>
+            <key type="filename">assets/enemy/enemy-eye-002.png</key>
+            <key type="filename">assets/enemy/enemy-hair-001.png</key>
+            <key type="filename">assets/enemy/enemy-hair-002.png</key>
+            <key type="filename">assets/enemy/enemy-hair-003.png</key>
+            <key type="filename">assets/enemy/enemy-teeth-001.png</key>
+            <key type="filename">assets/enemy/enemy-tounge-001.png</key>
+            <key type="filename">assets/enemy/enemy-tounge-002.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>120,50,240,100</rect>
+                <key>scale9Paddings</key>
+                <rect>120,50,240,100</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">assets/enemy/enemy-body-003.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>115,50,230,100</rect>
+                <key>scale9Paddings</key>
+                <rect>115,50,230,100</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">assets/hero/hero-001.png</key>
             <key type="filename">assets/hero/hero-002.png</key>
             <key type="filename">assets/hero/hero-003.png</key>
@@ -245,6 +284,7 @@
         <key>fileList</key>
         <array>
             <filename>assets/hero</filename>
+            <filename>assets/enemy</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
