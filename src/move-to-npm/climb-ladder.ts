@@ -59,6 +59,17 @@ export class LadderClimbing {
     // console.log('climb state', this.state);
   }
 
+  cancel() {
+    if (this.isHappening) {
+      if (this.direction === -1) {
+        this.state = ClimbingStates.UpFinish;
+      } else if (this.direction === 1) {
+        this.state = ClimbingStates.DownFinish;
+      }
+    }
+    this.update(0);
+  }
+
   update(_delta: number) {
     if (this.state === ClimbingStates.None) {
       this.isHappening = false;

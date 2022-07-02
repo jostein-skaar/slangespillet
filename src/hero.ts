@@ -33,8 +33,8 @@ export class Hero {
     this.sprite = scene.physics.add.sprite(this.startPosition.x, this.startPosition.y, 'sprites', 'hero-001.png');
     this.createAnimations();
 
-    this.jumpMethod = jumpWithLongPress(scene, this.sprite);
     this.ladderClimbing = new LadderClimbing(this.sprite, this);
+    this.jumpMethod = jumpWithLongPress(scene, this.sprite, this.ladderClimbing);
   }
 
   climbLadder(x: number, y: number, direction: number) {
@@ -48,12 +48,13 @@ export class Hero {
 
   update(delta: number) {
     this.updateAnimations(this.scene.physics.world.isPaused, this.ladderClimbing.isClimbing);
+    const isJumping = this.jumpMethod();
 
     if (this.ladderClimbing.isHappening) {
       this.ladderClimbing.update(delta);
     } else {
       this.sprite.setVelocityX(this.speedX);
-      if (this.jumpMethod()) {
+      if (isJumping) {
         this.sprite.setVelocityY(this.speedY);
       }
     }
