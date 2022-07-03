@@ -16,7 +16,7 @@ if (import.meta.env.PROD) {
 
 const maxWantedWidth = 640;
 // Height should always be 640px. This is from the tilemap.
-const height = 640;
+const height = 576;
 // Width is not that important, but shouldn't be to wide.
 let width = maxWantedWidth;
 

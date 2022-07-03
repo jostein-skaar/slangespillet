@@ -84,7 +84,7 @@ export class Enemy extends Phaser.GameObjects.Container {
     this.add(eye);
   }
 
-  setFlipX(flip: boolean) {
+  private setFlipX(flip: boolean) {
     this.iterate((go: any) => (go.flipX = flip));
   }
 
@@ -93,7 +93,7 @@ export class Enemy extends Phaser.GameObjects.Container {
 
     body.setVelocityX(this.direction * 40);
 
-    if (this.direction === 1 && this.x > this.hero.sprite.x + adjustForPixelRatio(400)) {
+    if (this.direction === 1 && this.x > this.hero.sprite.x + adjustForPixelRatio(200)) {
       this.direction = -1;
       this.setFlipX(true);
       // body.flipX = true;

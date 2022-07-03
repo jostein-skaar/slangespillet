@@ -76,7 +76,7 @@ export function createScoreText(scene: Phaser.Scene): (score: Score) => void {
     return text;
   };
 
-  const textElement = scene.add.text(adjustForPixelRatio(16), adjustForPixelRatio(16), '', {
+  const textElement = scene.add.text(adjustForPixelRatio(450), adjustForPixelRatio(16), '', {
     fontSize: `${adjustForPixelRatio(24)}px`,
     color: '#000',
     backgroundColor: '#ccc',

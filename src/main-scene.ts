@@ -8,6 +8,7 @@ import { preload } from './preload';
 import { createScoreText, loseGame } from './slangespillet';
 import { Position } from './move-to-npm/position';
 import { Enemy } from './enemy';
+import { Icon } from './move-to-npm/icon';
 
 export class MainScene extends Phaser.Scene {
   map!: Phaser.Tilemaps.Tilemap;
@@ -116,6 +117,21 @@ export class MainScene extends Phaser.Scene {
     createCountdown(this, 1, '#0653c7', () => {
       console.log('Start game');
     });
+
+    new Icon(this, 'pause', adjustForPixelRatio(8), adjustForPixelRatio(8), 0x0066ff, 0x00ff00, () => {
+      console.log('Want to pause/start');
+      if (this.physics.world.isPaused) {
+        this.physics.resume();
+        this.anims.resumeAll();
+      } else {
+        this.physics.pause();
+        this.anims.pauseAll();
+      }
+    });
+
+    // new Icon(this, 'gear', adjustForPixelRatio(8 + 8 + 32), adjustForPixelRatio(8), 0x0066ff, 0x00ffff, () => {
+    //   console.log('Settings');
+    // });
   }
 
   enemyDirection = 1;

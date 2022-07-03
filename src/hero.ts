@@ -17,10 +17,6 @@ export class Hero {
   isDead = false;
   speedX = adjustForPixelRatio(100);
   speedY = adjustForPixelRatio(-200);
-  isTransistionToClimpbingUp = false;
-  climbingX = 0;
-  climbingY = 0;
-  climbingDirection = 0;
 
   constructor(scene: Phaser.Scene, startPositionInLevel: Position) {
     this.scene = scene;
@@ -58,7 +54,6 @@ export class Hero {
         this.sprite.setVelocityY(this.speedY);
       }
     }
-    // this.climbLadderMethod(delta);
   }
 
   private createAnimations() {
