@@ -16,15 +16,14 @@ export function jumpWithLongPress(
     }
 
     const delta = scene.game.loop.delta;
-    const tryingToJump = scene.input.activePointer.isDown && scene.input.activePointer.y > safeMarginTop;
+    // y < 0: Over the canvas if in a browser.
+    // y > safeMarginTop: Under the icon bar.
+    const tryingToJump =
+      scene.input.activePointer.isDown && (scene.input.activePointer.y < 0 || scene.input.activePointer.y > safeMarginTop);
     const isOnGround = spriteWithDynamicBody.body.onFloor();
     const isClimbing = ladderClimbing.isClimbing;
 
     const isOkToJump = isOnGround || isClimbing;
-
-    if (tryingToJump) {
-      console.log(scene.input.activePointer.y);
-    }
 
     if (tryingToJump && isOkToJump) {
       jumpTime = delta;
