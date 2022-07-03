@@ -118,7 +118,7 @@ export class MainScene extends Phaser.Scene {
       console.log('Start game');
     });
 
-    new Icon(this, 'pause', adjustForPixelRatio(8), adjustForPixelRatio(8), 0x0066ff, 0x00ff00, () => {
+    new Icon(this, 'pause', adjustForPixelRatio(8), adjustForPixelRatio(8), 0x0066ff, 0xe7f5ff, () => {
       if (this.physics.world.isPaused) {
         this.physics.resume();
         this.anims.resumeAll();
