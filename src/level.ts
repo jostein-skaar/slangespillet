@@ -1,16 +1,23 @@
+import { adjustForPixelRatio } from '@jostein-skaar/common-game';
+import { Enemy } from './enemy';
+import { Hero } from './hero';
+
 export class Level {
   private scene: Phaser.Scene;
   private map: Phaser.Tilemaps.Tilemap;
   level: number;
+  hero: Hero;
   platformLayer: Phaser.Tilemaps.TilemapLayer;
+  presentsLayer: Phaser.Tilemaps.TilemapLayer;
   presentGroup: Phaser.Physics.Arcade.Group;
   enemyGroup: Phaser.Physics.Arcade.Group;
   ladderGroup: Phaser.Physics.Arcade.Group;
 
-  constructor(scene: Phaser.Scene, map: Phaser.Tilemaps.Tilemap, level: number) {
+  constructor(scene: Phaser.Scene, map: Phaser.Tilemaps.Tilemap, level: number, hero: Hero) {
     this.scene = scene;
     this.map = map;
     this.level = level;
+    this.hero = hero;
 
     this.presentGroup = scene.physics.add.group({ allowGravity: false });
     this.enemyGroup = scene.physics.add.group();
@@ -18,10 +25,10 @@ export class Level {
     this.ladderGroup = scene.physics.add.group({ allowGravity: false });
 
     const tiles = map.getTileset('tiles');
-    const tiledLevel = `level${level}`;
 
-    this.platformLayer = map.createLayer(tiledLevel, [tiles]);
+    this.platformLayer = map.createLayer(`level${level}/level`, [tiles]);
     this.platformLayer.setCollisionByProperty({ ground: true });
+    this.presentsLayer = map.createLayer(`level${level}/presents`, [tiles]);
     this.reset();
   }
 
@@ -38,9 +45,8 @@ export class Level {
 
     const presentsFirstGid = this.map.tilesets.find((x) => x.name.startsWith('presents'))?.firstgid!;
 
-    this.platformLayer.forEachTile((tile: Phaser.Tilemaps.Tile) => {
+    this.presentsLayer.forEachTile((tile: Phaser.Tilemaps.Tile) => {
       if (tile.properties.present === true) {
-        tile.visible = false;
         const present: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody = this.presentGroup
           .get(tile.pixelX, tile.pixelY, 'present', tile.index - presentsFirstGid)
           .setOrigin(0, 0);
@@ -50,7 +56,56 @@ export class Level {
   }
 
   private resetEnemies() {
-    console.log('resetEnemies');
+    for (const gameObject of this.enemyGroup.getChildren()) {
+      gameObject.setActive(false);
+    }
+
+    const l = this.map.getObjectLayer(`level${this.level}/data`).objects;
+    console.log(l.find((x) => x.name === 'hero'));
+    console.log(l.filter((x) => x.name === 'slange'));
+
+    const color = new Phaser.Display.Color();
+
+    for (let index = 0; index < 5; index++) {
+      let enemy = this.enemyGroup.getFirstDead() as Enemy;
+      if (enemy === null) {
+        enemy = new Enemy(
+          this.scene,
+          Phaser.Math.Between(0, this.map.widthInPixels),
+          Phaser.Math.Between(0, this.map.heightInPixels) - adjustForPixelRatio(50) / 2,
+          color.random(60, 240).color,
+          this.hero
+        );
+        this.enemyGroup.add(enemy);
+      } else {
+        enemy.setPosition(
+          Phaser.Math.Between(0, this.map.widthInPixels),
+          Phaser.Math.Between(0, this.map.heightInPixels) - adjustForPixelRatio(50) / 2
+        );
+        enemy.setActive(true);
+      }
+    }
+
+    // const enemy1 = new Enemy(
+    //   this,
+    //   startPositionInLevel.x + 220,
+    //   startPositionInLevel.y - adjustForPixelRatio(50) / 2,
+    //   color.random(60, 240).color,
+    //   this.hero
+    // );
+    // this.level.enemyGroup.add(enemy1);
+
+    // const enemy2 = new Enemy(
+    //   this,
+    //   startPositionInLevel.x + 330,
+    //   startPositionInLevel.y - adjustForPixelRatio(50) / 2,
+    //   color.random(60, 240).color,
+    //   this.hero
+    // );
+    // this.level.enemyGroup.add(enemy2);
+
+    // const enemy3 = new Enemy(this, startPositionInLevel.x + 700, adjustForPixelRatio(200), color.random(60, 240).color, this.hero);
+    // this.level.enemyGroup.add(enemy3);
   }
 
   private resetLadders() {

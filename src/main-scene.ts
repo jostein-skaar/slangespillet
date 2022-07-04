@@ -7,7 +7,6 @@ import { Level } from './level';
 import { preload } from './preload';
 import { createScoreText, loseGame } from './slangespillet';
 import { Position } from './move-to-npm/position';
-import { Enemy } from './enemy';
 import { Icon } from './move-to-npm/icon';
 
 export class MainScene extends Phaser.Scene {
@@ -30,8 +29,6 @@ export class MainScene extends Phaser.Scene {
   }
 
   create(): void {
-    console.log('TILE_BIAS', this.physics.world.TILE_BIAS);
-
     this.score = new Score('slangespillet-best-score', 1, createScoreText(this));
 
     const startPositionInLevel: Position = {
@@ -42,33 +39,12 @@ export class MainScene extends Phaser.Scene {
     this.map = this.make.tilemap({ key: 'map' });
     this.map.addTilesetImage('tiles', 'tiles');
 
-    this.level = new Level(this, this.map, 1);
+    this.hero = new Hero(this, startPositionInLevel);
+    this.hero.sprite.setDepth(1);
+
+    this.level = new Level(this, this.map, 1, this.hero);
 
     // const hero = new Hero(adjustForPixelRatio(70), adjustForPixelRatio(55), startPositionInLevel);
-    this.hero = new Hero(this, startPositionInLevel);
-
-    const color = new Phaser.Display.Color();
-
-    const enemy1 = new Enemy(
-      this,
-      startPositionInLevel.x + 220,
-      startPositionInLevel.y - adjustForPixelRatio(50) / 2,
-      color.random(60, 240).color,
-      this.hero
-    );
-    this.level.enemyGroup.add(enemy1);
-
-    const enemy2 = new Enemy(
-      this,
-      startPositionInLevel.x + 330,
-      startPositionInLevel.y - adjustForPixelRatio(50) / 2,
-      color.random(60, 240).color,
-      this.hero
-    );
-    this.level.enemyGroup.add(enemy2);
-
-    const enemy3 = new Enemy(this, startPositionInLevel.x + 700, adjustForPixelRatio(200), color.random(60, 240).color, this.hero);
-    this.level.enemyGroup.add(enemy3);
 
     this.physics.add.collider(this.hero.sprite, this.level.platformLayer);
     this.physics.add.collider(this.level.enemyGroup, this.level.platformLayer);
