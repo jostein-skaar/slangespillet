@@ -58,7 +58,7 @@ export class MainScene extends Phaser.Scene {
     // });
 
     this.physics.add.overlap(this.hero.sprite, this.level.presentGroup, (_helt, present: any) => {
-      // present.disableBody(true, true);
+      present.disableBody(true, true);
       this.score.update(+1);
     });
 
