@@ -1,6 +1,7 @@
 import { adjustForPixelRatio } from '@jostein-skaar/common-game';
 import { Enemy } from './enemy';
 import { Hero } from './hero';
+import { Position } from './move-to-npm/position';
 
 export class Level {
   private scene: Phaser.Scene;
@@ -12,6 +13,7 @@ export class Level {
   presentGroup: Phaser.Physics.Arcade.Group;
   enemyGroup: Phaser.Physics.Arcade.Group;
   ladderGroup: Phaser.Physics.Arcade.Group;
+  color = new Phaser.Display.Color();
 
   constructor(scene: Phaser.Scene, map: Phaser.Tilemaps.Tilemap, level: number, hero: Hero) {
     this.scene = scene;
@@ -60,31 +62,50 @@ export class Level {
       gameObject.setActive(false);
     }
 
-    const l = this.map.getObjectLayer(`level${this.level}/data`).objects;
-    console.log(l.find((x) => x.name === 'hero'));
-    console.log(l.filter((x) => x.name === 'slange'));
+    const dataLayer = this.map.getObjectLayer(`level${this.level}/data`).objects;
+    // console.log(dataLayer.find((x) => x.name === 'hero'));
+    const enemyObjects = dataLayer.filter((x) => x.name === 'enemy');
 
-    const color = new Phaser.Display.Color();
+    for (const enemyObject of enemyObjects) {
+      const startPositionInMap: Position = {
+        x: (enemyObject.x as number) + (enemyObject.polyline![0].x as number),
+        y: (enemyObject.y as number) + (enemyObject.polyline![0].y as number),
+      };
 
-    for (let index = 0; index < 5; index++) {
+      const endPositionInMap: Position = {
+        x: (enemyObject.x as number) + (enemyObject.polyline![1].x as number),
+        y: (enemyObject.y as number) + (enemyObject.polyline![1].y as number),
+      };
+
       let enemy = this.enemyGroup.getFirstDead() as Enemy;
       if (enemy === null) {
-        enemy = new Enemy(
-          this.scene,
-          Phaser.Math.Between(0, this.map.widthInPixels),
-          Phaser.Math.Between(0, this.map.heightInPixels) - adjustForPixelRatio(50) / 2,
-          color.random(60, 240).color,
-          this.hero
-        );
+        enemy = new Enemy(this.scene, startPositionInMap, endPositionInMap, this.color.random(60, 240).color, this.hero);
         this.enemyGroup.add(enemy);
       } else {
-        enemy.setPosition(
-          Phaser.Math.Between(0, this.map.widthInPixels),
-          Phaser.Math.Between(0, this.map.heightInPixels) - adjustForPixelRatio(50) / 2
-        );
+        enemy.setPositions(startPositionInMap, endPositionInMap);
         enemy.setActive(true);
       }
     }
+
+    // for (let index = 0; index < 5; index++) {
+    //   let enemy = this.enemyGroup.getFirstDead() as Enemy;
+    //   if (enemy === null) {
+    //     enemy = new Enemy(
+    //       this.scene,
+    //       Phaser.Math.Between(0, this.map.widthInPixels),
+    //       Phaser.Math.Between(0, this.map.heightInPixels) - adjustForPixelRatio(50) / 2,
+    //       this.color.random(60, 240).color,
+    //       this.hero
+    //     );
+    //     this.enemyGroup.add(enemy);
+    //   } else {
+    //     enemy.setPosition(
+    //       Phaser.Math.Between(0, this.map.widthInPixels),
+    //       Phaser.Math.Between(0, this.map.heightInPixels) - adjustForPixelRatio(50) / 2
+    //     );
+    //     enemy.setActive(true);
+    //   }
+    // }
 
     // const enemy1 = new Enemy(
     //   this,

@@ -1,27 +1,28 @@
 import { adjustForPixelRatio } from '@jostein-skaar/common-game';
 import { Hero } from './hero';
+import { Position } from './move-to-npm/position';
 
 export class Enemy extends Phaser.GameObjects.Container {
-  width: number;
-  height: number;
+  static width = adjustForPixelRatio(80);
+  static height = adjustForPixelRatio(35);
   private hero: Hero;
   private direction = 1;
   private static isInitialized = false;
+  leftPosition!: Position;
+  rightPosition!: Position;
 
-  constructor(scene: Phaser.Scene, x: number, y: number, color: number, hero: Hero) {
-    super(scene, x, y, undefined);
+  constructor(scene: Phaser.Scene, startPositionInMap: Position, endPositionInMap: Position, color: number, hero: Hero) {
+    super(scene, 0, 0, undefined);
 
     if (!Enemy.isInitialized) {
       Enemy.initializeAnimations(scene);
       Enemy.isInitialized = true;
     }
 
-    this.width = adjustForPixelRatio(115);
-    this.height = adjustForPixelRatio(50);
     this.hero = hero;
     scene.add.existing(this);
 
-    this.setSize(this.width, this.height);
+    this.setSize(Enemy.width, Enemy.height);
 
     // this.enemyC.setSize(120, 50);
     const tounge = scene.add.sprite(0, 0, 'sprites', 'enemy-tounge-001.png');
@@ -43,6 +44,8 @@ export class Enemy extends Phaser.GameObjects.Container {
     const eye = scene.add.sprite(0, 0, 'sprites', 'enemy-eye-001.png');
     eye.play('enemy-eye', true);
     this.add(eye);
+
+    this.setPositions(startPositionInMap, endPositionInMap);
   }
 
   preUpdate(_time: number, _delta: number) {
@@ -50,12 +53,33 @@ export class Enemy extends Phaser.GameObjects.Container {
 
     body.setVelocityX(this.direction * 40);
 
-    if (this.direction === 1 && this.x > this.hero.sprite.x + adjustForPixelRatio(200)) {
+    if (this.direction === 1 && this.x > this.rightPosition.x) {
       this.direction = -1;
       this.setFlipX(true);
-    } else if (this.direction === -1 && this.x < this.hero.sprite.x) {
+    } else if (this.direction === -1 && this.x < this.leftPosition.x) {
       this.direction = 1;
       this.setFlipX(false);
+    }
+  }
+
+  setPositions(startPositionInMap: Position, endPositionInMap: Position) {
+    this.direction = 1;
+    if (startPositionInMap.x > endPositionInMap.x) {
+      this.direction = -1;
+    }
+
+    const leftPositionInMap = this.direction === -1 ? endPositionInMap : startPositionInMap;
+    const rightPositionInMap = this.direction === -1 ? startPositionInMap : endPositionInMap;
+
+    this.leftPosition = { x: leftPositionInMap.x + Enemy.width / 2, y: leftPositionInMap.y - Enemy.height / 2 };
+    this.rightPosition = { x: rightPositionInMap.x - Enemy.width / 2, y: rightPositionInMap.y - Enemy.height / 2 };
+
+    if (this.direction === 1) {
+      this.setPosition(this.leftPosition.x, this.leftPosition.y);
+      this.setFlipX(false);
+    } else {
+      this.setPosition(this.rightPosition.x, this.rightPosition.y);
+      this.setFlipX(true);
     }
   }
 
@@ -88,7 +112,7 @@ export class Enemy extends Phaser.GameObjects.Container {
     });
 
     scene.anims.create({
-      key: 'eye',
+      key: 'enemy-eye',
       frames: [
         { key: 'sprites', frame: 'enemy-eye-001.png' },
         { key: 'sprites', frame: 'enemy-eye-002.png' },

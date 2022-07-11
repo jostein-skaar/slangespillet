@@ -44,6 +44,7 @@
         "slangespillet.tmx"
     ],
     "project": "slangespillet.tiled-project",
+    "property.type": "bool",
     "recentFiles": [
         "D:/Kode/spill/common-game/artwork/tiles.tsx",
         "slangespillet.tmx",

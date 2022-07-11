@@ -58,7 +58,7 @@ export class MainScene extends Phaser.Scene {
     // });
 
     this.physics.add.overlap(this.hero.sprite, this.level.presentGroup, (_helt, present: any) => {
-      present.disableBody(true, true);
+      // present.disableBody(true, true);
       this.score.update(+1);
     });
 
@@ -92,6 +92,7 @@ export class MainScene extends Phaser.Scene {
 
     createCountdown(this, 1, '#0653c7', () => {
       console.log('Start game');
+      // this.physics.pause();
     });
 
     new Icon(this, 'pause', adjustForPixelRatio(8), adjustForPixelRatio(8), 0x0066ff, 0xe7f5ff, () => {
