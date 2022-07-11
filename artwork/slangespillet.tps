@@ -207,6 +207,24 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">../../common-game/artwork/icons/icon-bg-001.png</key>
+            <key type="filename">../../common-game/artwork/icons/icon-gear-001.png</key>
+            <key type="filename">../../common-game/artwork/icons/icon-gear-002.png</key>
+            <key type="filename">../../common-game/artwork/icons/icon-pause-001.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>32,32,64,64</rect>
+                <key>scale9Paddings</key>
+                <rect>32,32,64,64</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">assets/enemy/enemy-body-001.png</key>
             <key type="filename">assets/enemy/enemy-body-002.png</key>
             <key type="filename">assets/enemy/enemy-eye-001.png</key>
@@ -285,6 +303,7 @@
         <array>
             <filename>assets/hero</filename>
             <filename>assets/enemy</filename>
+            <filename>../../common-game/artwork/icons</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
