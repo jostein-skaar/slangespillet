@@ -16,8 +16,11 @@
             "scaleInEditor": 1
         },
         "slangespillet.tmx": {
+            "expandedGroupLayers": [
+                4
+            ],
             "scale": 0.49459375,
-            "selectedLayer": 3,
+            "selectedLayer": 0,
             "viewCenter": {
                 "x": 1339.4831616857268,
                 "y": 293.16989953876293
@@ -38,14 +41,12 @@
     "map.tileWidth": 32,
     "map.width": 100,
     "openFiles": [
-        "slangespillet.tmx",
-        "D:/Kode/spill/common-game/artwork/presents.tsx",
-        "D:/Kode/spill/common-game/artwork/tiles.tsx"
+        "slangespillet.tmx"
     ],
     "project": "slangespillet.tiled-project",
     "recentFiles": [
         "D:/Kode/spill/common-game/artwork/tiles.tsx",
-        "D:/Kode/spill/common-game/artwork/presents.tsx",
-        "slangespillet.tmx"
+        "slangespillet.tmx",
+        "D:/Kode/spill/common-game/artwork/presents.tsx"
     ]
 }
