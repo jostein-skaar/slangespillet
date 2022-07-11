@@ -8,6 +8,7 @@ import { preload } from './preload';
 import { createScoreText, loseGame } from './slangespillet';
 import { Position } from './move-to-npm/position';
 import { Icon } from './move-to-npm/icon';
+import { Enemy } from './enemy';
 
 export class MainScene extends Phaser.Scene {
   map!: Phaser.Tilemaps.Tilemap;
@@ -42,7 +43,7 @@ export class MainScene extends Phaser.Scene {
     this.hero = new Hero(this, startPositionInLevel);
     this.hero.sprite.setDepth(1);
 
-    this.level = new Level(this, this.map, 1, this.hero);
+    this.level = new Level(this, this.map, 1);
 
     // const hero = new Hero(adjustForPixelRatio(70), adjustForPixelRatio(55), startPositionInLevel);
 
@@ -62,8 +63,13 @@ export class MainScene extends Phaser.Scene {
       this.score.update(+1);
     });
 
-    this.physics.add.overlap(this.hero.sprite, this.level.enemyGroup, (_helt, _enemy: any) => {
-      console.log('Au au');
+    this.physics.add.overlap(this.hero.sprite, this.level.enemyGroup, (_helt, enemy: any) => {
+      enemy = enemy as Enemy;
+      if (enemy.body.touching.up) {
+        enemy.kill();
+      } else {
+        console.log('Au au');
+      }
     });
 
     this.physics.add.overlap(this.hero.sprite, this.level.ladderGroup, (_helt, hitBox: any) => {

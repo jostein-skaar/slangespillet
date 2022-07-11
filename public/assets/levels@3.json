@@ -3753,6 +3753,132 @@
               "width": 0,
               "x": 2016,
               "y": 864
+            },
+            {
+              "class": "",
+              "height": 0,
+              "id": 50,
+              "name": "enemy",
+              "polyline": [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 960,
+                  "y": 0
+                }
+              ],
+              "rotation": 0,
+              "visible": true,
+              "width": 0,
+              "x": 5856,
+              "y": 1632
+            },
+            {
+              "class": "",
+              "height": 0,
+              "id": 51,
+              "name": "enemy",
+              "polyline": [
+                {
+                  "x": 0,
+                  "y": 192
+                },
+                {
+                  "x": 960,
+                  "y": 192
+                }
+              ],
+              "rotation": 0,
+              "visible": true,
+              "width": 0,
+              "x": 8544,
+              "y": 1440
+            },
+            {
+              "class": "",
+              "height": 0,
+              "id": 52,
+              "name": "enemy",
+              "polyline": [
+                {
+                  "x": 1152,
+                  "y": 0
+                },
+                {
+                  "x": -96,
+                  "y": 0
+                }
+              ],
+              "rotation": 0,
+              "visible": true,
+              "width": 0,
+              "x": 8256,
+              "y": 1632
+            },
+            {
+              "class": "",
+              "height": 0,
+              "id": 53,
+              "name": "enemy",
+              "polyline": [
+                {
+                  "x": -192,
+                  "y": 0
+                },
+                {
+                  "x": 576,
+                  "y": 0
+                }
+              ],
+              "rotation": 0,
+              "visible": true,
+              "width": 0,
+              "x": 6048,
+              "y": 672
+            },
+            {
+              "class": "",
+              "height": 0,
+              "id": 54,
+              "name": "enemy",
+              "polyline": [
+                {
+                  "x": -480,
+                  "y": -96
+                },
+                {
+                  "x": 192,
+                  "y": -96
+                }
+              ],
+              "rotation": 0,
+              "visible": true,
+              "width": 0,
+              "x": 5856,
+              "y": 1152
+            },
+            {
+              "class": "",
+              "height": 0,
+              "id": 55,
+              "name": "enemy",
+              "polyline": [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 384,
+                  "y": 0
+                }
+              ],
+              "rotation": 0,
+              "visible": true,
+              "width": 0,
+              "x": 7104,
+              "y": 288
             }
           ],
           "opacity": 1,
@@ -7474,7 +7600,7 @@
     }
   ],
   "nextlayerid": 16,
-  "nextobjectid": 50,
+  "nextobjectid": 56,
   "orientation": "orthogonal",
   "renderorder": "left-up",
   "tiledversion": "1.9.0",

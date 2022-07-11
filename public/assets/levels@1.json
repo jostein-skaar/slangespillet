@@ -179,6 +179,126 @@
                          "width":0,
                          "x":672,
                          "y":288
+                        }, 
+                        {
+                         "class":"",
+                         "height":0,
+                         "id":50,
+                         "name":"enemy",
+                         "polyline":[
+                                {
+                                 "x":0,
+                                 "y":0
+                                }, 
+                                {
+                                 "x":320,
+                                 "y":0
+                                }],
+                         "rotation":0,
+                         "visible":true,
+                         "width":0,
+                         "x":1952,
+                         "y":544
+                        }, 
+                        {
+                         "class":"",
+                         "height":0,
+                         "id":51,
+                         "name":"enemy",
+                         "polyline":[
+                                {
+                                 "x":0,
+                                 "y":64
+                                }, 
+                                {
+                                 "x":320,
+                                 "y":64
+                                }],
+                         "rotation":0,
+                         "visible":true,
+                         "width":0,
+                         "x":2848,
+                         "y":480
+                        }, 
+                        {
+                         "class":"",
+                         "height":0,
+                         "id":52,
+                         "name":"enemy",
+                         "polyline":[
+                                {
+                                 "x":384,
+                                 "y":0
+                                }, 
+                                {
+                                 "x":-32,
+                                 "y":0
+                                }],
+                         "rotation":0,
+                         "visible":true,
+                         "width":0,
+                         "x":2752,
+                         "y":544
+                        }, 
+                        {
+                         "class":"",
+                         "height":0,
+                         "id":53,
+                         "name":"enemy",
+                         "polyline":[
+                                {
+                                 "x":-64,
+                                 "y":0
+                                }, 
+                                {
+                                 "x":192,
+                                 "y":0
+                                }],
+                         "rotation":0,
+                         "visible":true,
+                         "width":0,
+                         "x":2016,
+                         "y":224
+                        }, 
+                        {
+                         "class":"",
+                         "height":0,
+                         "id":54,
+                         "name":"enemy",
+                         "polyline":[
+                                {
+                                 "x":-160,
+                                 "y":-32
+                                }, 
+                                {
+                                 "x":64,
+                                 "y":-32
+                                }],
+                         "rotation":0,
+                         "visible":true,
+                         "width":0,
+                         "x":1952,
+                         "y":384
+                        }, 
+                        {
+                         "class":"",
+                         "height":0,
+                         "id":55,
+                         "name":"enemy",
+                         "polyline":[
+                                {
+                                 "x":0,
+                                 "y":0
+                                }, 
+                                {
+                                 "x":128,
+                                 "y":0
+                                }],
+                         "rotation":0,
+                         "visible":true,
+                         "width":0,
+                         "x":2368,
+                         "y":96
                         }],
                  "opacity":1,
                  "type":"objectgroup",
@@ -325,7 +445,7 @@
          "y":0
         }],
  "nextlayerid":16,
- "nextobjectid":50,
+ "nextobjectid":56,
  "orientation":"orthogonal",
  "renderorder":"left-up",
  "tiledversion":"1.9.0",

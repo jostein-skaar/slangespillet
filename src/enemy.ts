@@ -1,17 +1,16 @@
 import { adjustForPixelRatio } from '@jostein-skaar/common-game';
-import { Hero } from './hero';
 import { Position } from './move-to-npm/position';
 
 export class Enemy extends Phaser.GameObjects.Container {
   static width = adjustForPixelRatio(80);
   static height = adjustForPixelRatio(35);
-  private hero: Hero;
   private direction = 1;
   private static isInitialized = false;
   leftPosition!: Position;
   rightPosition!: Position;
+  isDead = false;
 
-  constructor(scene: Phaser.Scene, startPositionInMap: Position, endPositionInMap: Position, color: number, hero: Hero) {
+  constructor(scene: Phaser.Scene, startPositionInMap: Position, endPositionInMap: Position, color: number) {
     super(scene, 0, 0, undefined);
 
     if (!Enemy.isInitialized) {
@@ -19,7 +18,6 @@ export class Enemy extends Phaser.GameObjects.Container {
       Enemy.isInitialized = true;
     }
 
-    this.hero = hero;
     scene.add.existing(this);
 
     this.setSize(Enemy.width, Enemy.height);
@@ -62,7 +60,7 @@ export class Enemy extends Phaser.GameObjects.Container {
     }
   }
 
-  setPositions(startPositionInMap: Position, endPositionInMap: Position) {
+  private setPositions(startPositionInMap: Position, endPositionInMap: Position) {
     this.direction = 1;
     if (startPositionInMap.x > endPositionInMap.x) {
       this.direction = -1;
@@ -81,6 +79,21 @@ export class Enemy extends Phaser.GameObjects.Container {
       this.setPosition(this.rightPosition.x, this.rightPosition.y);
       this.setFlipX(true);
     }
+  }
+
+  kill() {
+    this.setActive(false);
+    this.setVisible(false);
+    const body = this.body as Phaser.Physics.Arcade.Body;
+    body.setEnable(false);
+  }
+
+  reset(startPositionInMap: Position, endPositionInMap: Position) {
+    this.setPositions(startPositionInMap, endPositionInMap);
+    this.setActive(true);
+    this.setVisible(true);
+    const body = this.body as Phaser.Physics.Arcade.Body;
+    body.setEnable(true);
   }
 
   private setFlipX(flip: boolean) {

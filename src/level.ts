@@ -1,13 +1,10 @@
-import { adjustForPixelRatio } from '@jostein-skaar/common-game';
 import { Enemy } from './enemy';
-import { Hero } from './hero';
 import { Position } from './move-to-npm/position';
 
 export class Level {
   private scene: Phaser.Scene;
   private map: Phaser.Tilemaps.Tilemap;
   level: number;
-  hero: Hero;
   platformLayer: Phaser.Tilemaps.TilemapLayer;
   presentsLayer: Phaser.Tilemaps.TilemapLayer;
   presentGroup: Phaser.Physics.Arcade.Group;
@@ -15,11 +12,10 @@ export class Level {
   ladderGroup: Phaser.Physics.Arcade.Group;
   color = new Phaser.Display.Color();
 
-  constructor(scene: Phaser.Scene, map: Phaser.Tilemaps.Tilemap, level: number, hero: Hero) {
+  constructor(scene: Phaser.Scene, map: Phaser.Tilemaps.Tilemap, level: number) {
     this.scene = scene;
     this.map = map;
     this.level = level;
-    this.hero = hero;
 
     this.presentGroup = scene.physics.add.group({ allowGravity: false });
     this.enemyGroup = scene.physics.add.group();
@@ -79,11 +75,10 @@ export class Level {
 
       let enemy = this.enemyGroup.getFirstDead() as Enemy;
       if (enemy === null) {
-        enemy = new Enemy(this.scene, startPositionInMap, endPositionInMap, this.color.random(60, 240).color, this.hero);
+        enemy = new Enemy(this.scene, startPositionInMap, endPositionInMap, this.color.random(60, 240).color);
         this.enemyGroup.add(enemy);
       } else {
-        enemy.setPositions(startPositionInMap, endPositionInMap);
-        enemy.setActive(true);
+        enemy.reset(startPositionInMap, endPositionInMap);
       }
     }
 
