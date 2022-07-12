@@ -51,10 +51,10 @@ export class Enemy extends Phaser.GameObjects.Container {
 
     body.setVelocityX(this.direction * 40);
 
-    if (this.direction === 1 && this.x > this.rightPosition.x) {
+    if (this.direction === 1 && this.x >= this.rightPosition.x) {
       this.direction = -1;
       this.setFlipX(true);
-    } else if (this.direction === -1 && this.x < this.leftPosition.x) {
+    } else if (this.direction === -1 && this.x <= this.leftPosition.x) {
       this.direction = 1;
       this.setFlipX(false);
     }
