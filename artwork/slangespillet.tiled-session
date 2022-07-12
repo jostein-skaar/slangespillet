@@ -7,6 +7,9 @@
         "": {
             "scaleInDock": 1
         },
+        "C:/kode/common-game/artwork/tiles.tsx": {
+            "scaleInEditor": 1
+        },
         "D:/Kode/spill/common-game/artwork/presents.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
@@ -46,6 +49,7 @@
     "project": "slangespillet.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "C:/kode/common-game/artwork/tiles.tsx",
         "D:/Kode/spill/common-game/artwork/tiles.tsx",
         "slangespillet.tmx",
         "D:/Kode/spill/common-game/artwork/presents.tsx"
