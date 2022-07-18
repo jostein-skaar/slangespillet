@@ -56,19 +56,20 @@ button.start:active {
   margin-top: 30px;
 }
 
-#game {
-  height: 100%;
+#game canvas {
+  max-width: 1024px;
+  max-height: 1024px;
 }
 
-@media only screen and (min-device-width: 660px) and (min-device-height: 660px) {
+/* @media only screen and (min-device-width: 660px) and (min-device-height: 660px) {
   #game canvas {
     border: 10px dashed #0653c7;
   }
-}
+} */
 
 /* Black under game canvas when mobile portrait */
-@media only screen and (max-device-width: 640px) and (orientation: portrait) {
+/* @media only screen and (max-device-width: 640px) and (orientation: portrait) {
   #game {
     background-color: #000;
   }
-}
+} */

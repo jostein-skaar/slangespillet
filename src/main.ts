@@ -14,31 +14,55 @@ if (import.meta.env.PROD) {
 
 // TODO: GET ALL THIS FROM  common-game package
 
-const maxWantedWidth = 640;
-// Height should always be 640px. This is from the tilemap.
+const maxWidthMap = 100 * 32;
+const maxWidth = 1024;
+const maxScalingHeight = 1024;
+
+console.log('window.inner:', window.innerWidth, 'x', window.innerHeight);
+
+const availableWidth = window.innerWidth;
+const availableHeight = window.innerHeight > maxScalingHeight ? maxScalingHeight : window.innerHeight;
+
+const isPortrait = availableHeight > availableWidth;
+// Height should always be 576px. This is from the tilemap (18 tiles x 32px).
 const height = 576;
-// Width is not that important, but shouldn't be to wide.
-let width = maxWantedWidth;
 
-let scaleModePhaser = Phaser.Scale.ScaleModes.NONE;
-let centerModePhaser = Phaser.Scale.Center.NO_CENTER;
-if (window.innerHeight < height) {
-  scaleModePhaser = Phaser.Scale.ScaleModes.FIT;
-  const scaleRatio = window.innerHeight / height;
-  console.log('scaleRatio', scaleRatio);
-  // Compensate scale ratio to be able to fill width of screen when FIT is used.
-  width = Math.min(window.innerWidth / scaleRatio, maxWantedWidth);
-} else {
-  width = Math.min(window.innerWidth, maxWantedWidth);
+let width = (height * availableWidth) / availableHeight;
+if (width > maxWidth) {
+  width = maxWidth;
 }
 
-if (width < window.innerWidth) {
-  centerModePhaser = Phaser.Scale.Center.CENTER_BOTH;
+if (!isPortrait) {
+  console.log('widthInScaling calc', width);
+  width = (height / availableHeight) * width;
+  if (width > maxWidthMap) {
+    width = maxWidthMap;
+  }
 }
 
-console.table({ width, height, scaleModePhaser, centerModePhaser });
+// if (availableHeight === maxScalingHeight && availableWidth > availableHeight) {
+//   width = height;
+// }
 
-const gameConfig = createGameConfig(width, height, scaleModePhaser, centerModePhaser, isDebug);
+// let scaleModePhaser = Phaser.Scale.ScaleModes.NONE;
+// let centerModePhaser = Phaser.Scale.Center.NO_CENTER;
+// if (window.innerHeight < height) {
+//   scaleModePhaser = Phaser.Scale.ScaleModes.FIT;
+//   const scaleRatio = window.innerHeight / height;
+//   console.log('scaleRatio', scaleRatio);
+//   // Compensate scale ratio to be able to fill width of screen when FIT is used.
+//   width = Math.min(window.innerWidth / scaleRatio, maxWantedWidth);
+// } else {
+//   width = Math.min(window.innerWidth, maxWantedWidth);
+// }
+
+// if (width < window.innerWidth) {
+//   centerModePhaser = Phaser.Scale.Center.CENTER_BOTH;
+// }
+
+console.table({ width, height });
+
+const gameConfig = createGameConfig(width, height, isDebug);
 // const phaserGame = new Phaser.Game(gameConfig);
 new Phaser.Game(gameConfig);
 

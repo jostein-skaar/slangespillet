@@ -4,8 +4,8 @@ import { MainScene } from './main-scene';
 export function createGameConfig(
   width: number,
   height: number,
-  scalingModePhaser: Phaser.Scale.ScaleModes,
-  centerModePhaser: Phaser.Scale.Center,
+  // scalingModePhaser: Phaser.Scale.ScaleModes,
+  // centerModePhaser: Phaser.Scale.Center,
   isDebug: boolean
 ): Phaser.Types.Core.GameConfig {
   const gameConfig: Phaser.Types.Core.GameConfig = {
@@ -38,14 +38,17 @@ export function createGameConfig(
     scale: {
       // Vi har denne som FIT først, for da vil canvas.style.width og .height settes automatisk.
       // Må fjernes etterpå, ellers vil rare ting skje i forbindelse med resize.
-      mode: scalingModePhaser,
-      autoCenter: centerModePhaser,
+      // mode: scalingModePhaser,
+      // autoCenter: centerModePhaser,
+      mode: Phaser.Scale.ScaleModes.FIT,
+      // max: { width: 1024, height: 1024 },
+      autoCenter: Phaser.Scale.Center.CENTER_BOTH,
       // mode: Phaser.Scale.ScaleModes.NONE,
       // mode: Phaser.Scale.ScaleModes.FIT,
       // autoCenter: Phaser.Scale.Center.CENTER_BOTH,
       // autoCenter: Phaser.Scale.Center.CENTER_HORIZONTALLY,
       // autoCenter: Phaser.Scale.Center.CENTER_VERTICALLY,
-      // expandParent: true
+      // expandParent: true,
 
       zoom: 1 / adjustForPixelRatio(1),
       // autoRound: true,
