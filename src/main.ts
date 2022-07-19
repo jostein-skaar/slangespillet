@@ -2,7 +2,7 @@ import './style.css';
 
 import Phaser from 'phaser';
 import { createGameConfig } from './config';
-import { reloadWhenResize } from '@jostein-skaar/common-game';
+import { calculateSidescrollerWidth, reloadWhenResize } from '@jostein-skaar/common-game';
 
 reloadWhenResize(window);
 
@@ -16,29 +16,34 @@ if (import.meta.env.PROD) {
 
 const maxWidthMap = 100 * 32;
 const maxWidth = 1024;
-const maxScalingHeight = 1024;
 
-console.log('window.inner:', window.innerWidth, 'x', window.innerHeight);
-
-const availableWidth = window.innerWidth;
-const availableHeight = window.innerHeight > maxScalingHeight ? maxScalingHeight : window.innerHeight;
-
-const isPortrait = availableHeight > availableWidth;
-// Height should always be 576px. This is from the tilemap (18 tiles x 32px).
 const height = 576;
 
-let width = (height * availableWidth) / availableHeight;
-if (width > maxWidth) {
-  width = maxWidth;
-}
+const width = calculateSidescrollerWidth(height, maxWidth, maxWidthMap, window.innerWidth, window.innerHeight);
 
-if (!isPortrait) {
-  console.log('widthInScaling calc', width);
-  width = (height / availableHeight) * width;
-  if (width > maxWidthMap) {
-    width = maxWidthMap;
-  }
-}
+console.log('window.inner:', window.innerWidth, 'x', window.innerHeight);
+console.log('width:', width);
+
+// const availableWidth = window.innerWidth;
+// const availableHeight = window.innerHeight > maxScalingHeight ? maxScalingHeight : window.innerHeight;
+
+// const isPortrait = availableHeight > availableWidth;
+// // Height should always be 576px. This is from the tilemap (18 tiles x 32px).
+// const height = 576;
+
+// let width = (height * availableWidth) / availableHeight;
+// if (width > maxWidth) {
+//   width = maxWidth;
+// }
+
+// if (!isPortrait) {
+//   console.log('widthInScaling calc', width);
+
+//   width = (height / availableHeight) * width;
+//   if (width > maxWidthMap) {
+//     width = maxWidthMap;
+//   }
+// }
 
 // if (availableHeight === maxScalingHeight && availableWidth > availableHeight) {
 //   width = height;
