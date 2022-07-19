@@ -41,7 +41,6 @@ export function createGameConfig(
       // mode: scalingModePhaser,
       // autoCenter: centerModePhaser,
       mode: Phaser.Scale.ScaleModes.FIT,
-      // max: { width: 1024, height: 1024 },
       autoCenter: Phaser.Scale.Center.CENTER_BOTH,
       // mode: Phaser.Scale.ScaleModes.NONE,
       // mode: Phaser.Scale.ScaleModes.FIT,
