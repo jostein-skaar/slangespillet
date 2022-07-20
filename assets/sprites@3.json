@@ -4,7 +4,7 @@
 			"image": "sprites@3.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 1246,
+				"w": 1333,
 				"h": 242
 			},
 			"scale": 0.75,
@@ -325,27 +325,6 @@
 					}
 				},
 				{
-					"filename": "icon-gear-001.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 96,
-						"h": 96
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 96,
-						"h": 96
-					},
-					"frame": {
-						"x": 1138,
-						"y": 1,
-						"w": 96,
-						"h": 96
-					}
-				},
-				{
 					"filename": "enemy-tounge-002.png",
 					"rotated": false,
 					"trimmed": true,
@@ -367,7 +346,7 @@
 					}
 				},
 				{
-					"filename": "icon-gear-002.png",
+					"filename": "icon-gear-001.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -383,27 +362,6 @@
 					"frame": {
 						"x": 1051,
 						"y": 139,
-						"w": 96,
-						"h": 96
-					}
-				},
-				{
-					"filename": "icon-pause-001.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 96,
-						"h": 96
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 96,
-						"h": 96
-					},
-					"frame": {
-						"x": 1149,
-						"y": 99,
 						"w": 96,
 						"h": 96
 					}
@@ -449,6 +407,69 @@
 						"w": 27,
 						"h": 36
 					}
+				},
+				{
+					"filename": "icon-gear-002.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 1138,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "icon-pause-001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 1236,
+						"y": 1,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "ui-present-001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 1149,
+						"y": 99,
+						"w": 96,
+						"h": 96
+					}
 				}
 			]
 		}
@@ -456,6 +477,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:19da8ebefd141d0352e9285d4c16a369:75a29659281133f390b2718352948dea:4a9bf2ba9afc2827dfa178a3fc41fa73$"
+		"smartupdate": "$TexturePacker:SmartUpdate:81120e650f37ef54604ab0a2a18578cf:e4dd6bbff4fceef76188f58b1f83716a:4a9bf2ba9afc2827dfa178a3fc41fa73$"
 	}
 }
