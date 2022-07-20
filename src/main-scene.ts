@@ -30,8 +30,6 @@ export class MainScene extends Phaser.Scene {
   }
 
   create(): void {
-    this.score = new Score('slangespillet-best-score', 1, createScoreText(this));
-
     const startPositionInLevel: Position = {
       x: adjustForPixelRatio(50 + 2700 + -2700),
       y: this.scale.height - adjustForPixelRatio(32),
@@ -57,6 +55,8 @@ export class MainScene extends Phaser.Scene {
     //     this.hero.climbDownLadder(tile);
     //   }
     // });
+
+    this.score = new Score('slangespillet-best-score', 1, createScoreText(this));
 
     this.physics.add.overlap(this.hero.sprite, this.level.presentGroup, (_helt, present: any) => {
       present.disableBody(true, true);

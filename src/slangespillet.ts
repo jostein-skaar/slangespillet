@@ -67,26 +67,51 @@ export function loseGame(scene: Phaser.Scene, score: Score, startGameFn: () => v
 }
 
 export function createScoreText(scene: Phaser.Scene): (score: Score) => void {
+  let hasChangedFontSize = false;
   const getText = (score: Score) => {
-    let text = `Level ${score.level}`;
-    text += `\nPakker: ${score.currentScore}`;
-    if (score.highScore > 0) {
-      text += `\nRekord: ${score.highScore}`;
-    }
-    return text;
+    return `${score.currentScore}`;
   };
 
-  const textElement = scene.add.text(adjustForPixelRatio(450), adjustForPixelRatio(16), '', {
-    fontSize: `${adjustForPixelRatio(24)}px`,
-    color: '#000',
-    backgroundColor: '#ccc',
-    padding: { x: adjustForPixelRatio(5), y: adjustForPixelRatio(5) },
-  });
-  textElement.setScrollFactor(0, 0);
+  const presentSprite = scene.add
+    .sprite(scene.scale.width - adjustForPixelRatio(8 + 32 - 16), adjustForPixelRatio(8 + 16), 'sprites', 'ui-present-001.png')
+    .setScrollFactor(0)
+    .setOrigin(0.5, 0.5);
+
+  const textElement = scene.add
+    .text(presentSprite.x, presentSprite.y + adjustForPixelRatio(5), '', {
+      fontSize: `${adjustForPixelRatio(20)}px`,
+      color: '#fff',
+      stroke: '#000',
+      fontStyle: 'bold',
+      strokeThickness: adjustForPixelRatio(2),
+      fixedWidth: adjustForPixelRatio(32),
+      align: 'center',
+
+      // backgroundColor: '#000',
+      // padding: { top: adjustForPixelRatio(10) },
+    })
+    .setOrigin(0.5, 0.5)
+    .setScrollFactor(0, 0);
 
   const updateScoreText = (score: Score) => {
+    if (!hasChangedFontSize && score.currentScore > 99) {
+      console.log('Minske skrift', textElement.style.fontSize);
+      textElement.setFontSize(adjustForPixelRatio(15));
+      // textElement.setPadding({ top: adjustForPixelRatio(12) });
+      hasChangedFontSize = true;
+    }
     textElement.setText(getText(score));
+    pointTween.play();
   };
+
+  const pointTween = scene.tweens.add({
+    targets: textElement,
+    scale: 1.3,
+    ease: 'Power0',
+    duration: 100,
+    yoyo: true,
+    repeat: 0,
+  });
 
   return updateScoreText;
 }
