@@ -1,5 +1,5 @@
 import { adjustForPixelRatio } from '@jostein-skaar/common-game';
-import Phaser from 'phaser';
+import Phaser, { GameObjects } from 'phaser';
 import { createCountdown } from './move-to-npm/countdown';
 import { Hero } from './hero';
 import { Score } from './move-to-npm/score';
@@ -15,6 +15,7 @@ export class MainScene extends Phaser.Scene {
   level!: Level;
   hero!: Hero;
   score!: Score;
+  emitter!: GameObjects.Particles.ParticleEmitter;
   restartGameFn!: () => void;
 
   constructor() {
@@ -59,8 +60,7 @@ export class MainScene extends Phaser.Scene {
     this.score = new Score('slangespillet-best-score', 1, createScoreText(this));
 
     this.physics.add.overlap(this.hero.sprite, this.level.presentGroup, (_helt, present: any) => {
-      present.disableBody(true, true);
-      this.score.update(+1);
+      this.collectPresent(present);
     });
 
     this.physics.add.overlap(this.hero.sprite, this.level.enemyGroup, (_helt, enemy: any) => {
@@ -114,6 +114,14 @@ export class MainScene extends Phaser.Scene {
     // new Icon(this, 'gear', adjustForPixelRatio(8 + 8 + 32), adjustForPixelRatio(8), 0x0066ff, 0x00ffff, () => {
     //   console.log('Settings');
     // });
+
+    this.emitter = this.add.particles('sprites', 'particle-star-001.png').createEmitter({
+      scale: { start: 1, end: 0 },
+      speed: { min: 0, max: 200 },
+      active: false,
+      lifespan: 500,
+      quantity: 10,
+    });
   }
 
   enemyDirection = 1;
@@ -137,5 +145,20 @@ export class MainScene extends Phaser.Scene {
         this.restartGameFn();
       });
     }
+  }
+
+  collectPresent(present: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody) {
+    console.log('this.emitter.quantity.defaultValue', this.emitter.quantity.defaultValue);
+    present.disableBody(true, true);
+    this.score.update(+1);
+    const presentBounds = present.getBounds();
+    this.emitter.setPosition(presentBounds.left, presentBounds.top);
+    this.emitter.active = true;
+    this.emitter.setEmitZone({
+      source: new Phaser.Geom.Rectangle(0, 0, presentBounds.width, presentBounds.height),
+      type: 'random',
+      quantity: 25,
+    });
+    this.emitter.explode();
   }
 }

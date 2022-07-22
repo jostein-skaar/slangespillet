@@ -6840,6 +6840,14 @@
               "y": 1440,
               "height": null,
               "width": null
+            },
+            {
+              "id": 83,
+              "template": "../../artwork/finish-point.tx",
+              "x": 9408,
+              "y": 1440,
+              "height": null,
+              "width": null
             }
           ],
           "opacity": 1,
@@ -13409,7 +13417,7 @@
     }
   ],
   "nextlayerid": 25,
-  "nextobjectid": 83,
+  "nextobjectid": 84,
   "orientation": "orthogonal",
   "renderorder": "left-up",
   "tiledversion": "1.9.0",

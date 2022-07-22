@@ -468,6 +468,12 @@
                          "template":"..\/..\/artwork\/hero-start-point.tx",
                          "x":160,
                          "y":480
+                        }, 
+                        {
+                         "id":83,
+                         "template":"..\/..\/artwork\/finish-point.tx",
+                         "x":3136,
+                         "y":480
                         }],
                  "opacity":1,
                  "type":"objectgroup",
@@ -685,7 +691,7 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":83,
+ "nextobjectid":84,
  "orientation":"orthogonal",
  "renderorder":"left-up",
  "tiledversion":"1.9.0",

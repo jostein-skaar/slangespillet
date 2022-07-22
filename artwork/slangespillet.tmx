@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.0" orientation="orthogonal" renderorder="left-up" width="100" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="25" nextobjectid="83">
+<map version="1.9" tiledversion="1.9.0" orientation="orthogonal" renderorder="left-up" width="100" height="16" tilewidth="32" tileheight="32" infinite="0" nextlayerid="25" nextobjectid="84">
  <editorsettings>
   <export target="../public/assets/levels@1.json" format="json"/>
  </editorsettings>
@@ -141,6 +141,7 @@
    </object>
    <object id="75" template="enemy-from-left.tj" x="1472" y="96"/>
    <object id="81" template="hero-start-point.tx" x="160" y="480"/>
+   <object id="83" template="finish-point.tx" x="3136" y="480"/>
   </objectgroup>
  </group>
  <group id="21" name="level_template" visible="0" locked="1">
