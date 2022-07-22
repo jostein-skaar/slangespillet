@@ -11,7 +11,7 @@ export class Level {
   presentsLayer: Phaser.Tilemaps.TilemapLayer;
   presentGroup: Phaser.Physics.Arcade.Group;
   enemyGroup: Phaser.Physics.Arcade.Group;
-  finishSprite: Phaser.Types.Physics.Arcade.SpriteWithStaticBody;
+  finishSprite: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
   ladderGroup: Phaser.Physics.Arcade.Group;
   color = new Phaser.Display.Color();
 
@@ -21,7 +21,13 @@ export class Level {
     this.level = level;
     this.hero = hero;
 
-    this.finishSprite = scene.physics.add.staticSprite(0, 0, 'sprites', 'object-moringa-001.png');
+    this.finishSprite = scene.physics.add.sprite(0, 0, 'sprites', 'object-moringa-001.png');
+    this.finishSprite.setImmovable();
+    this.finishSprite.body.setAllowGravity(false);
+
+    scene.physics.add.overlap(this.hero.sprite, this.finishSprite, (_helt, _finish) => {
+      console.log('Finished game');
+    });
 
     this.presentGroup = scene.physics.add.group({ allowGravity: false });
     this.enemyGroup = scene.physics.add.group();

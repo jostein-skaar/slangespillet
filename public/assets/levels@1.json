@@ -159,13 +159,13 @@
                         {
                          "class":"",
                          "height":0,
-                         "id":91,
+                         "id":93,
                          "name":"finish",
                          "point":true,
                          "rotation":0,
                          "visible":true,
                          "width":0,
-                         "x":3136,
+                         "x":416,
                          "y":480
                         }],
                  "opacity":1,
@@ -182,7 +182,7 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":92,
+ "nextobjectid":94,
  "orientation":"orthogonal",
  "renderorder":"left-up",
  "tiledversion":"1.9.0",
