@@ -6,7 +6,6 @@ import { Score } from './move-to-npm/score';
 import { Level } from './level';
 import { preload } from './preload';
 import { createScoreText, loseGame } from './slangespillet';
-import { Position } from './move-to-npm/position';
 import { Icon } from './move-to-npm/icon';
 import { Enemy } from './enemy';
 
@@ -31,18 +30,13 @@ export class MainScene extends Phaser.Scene {
   }
 
   create(): void {
-    const startPositionInLevel: Position = {
-      x: adjustForPixelRatio(50 + 2700 + -2700),
-      y: this.scale.height - adjustForPixelRatio(32),
-    };
-
     this.map = this.make.tilemap({ key: 'map' });
     this.map.addTilesetImage('tiles', 'tiles');
 
-    this.hero = new Hero(this, startPositionInLevel);
+    this.hero = new Hero(this);
     this.hero.sprite.setDepth(1);
 
-    this.level = new Level(this, this.map, 1);
+    this.level = new Level(this, this.map, 1, this.hero);
 
     // const hero = new Hero(adjustForPixelRatio(70), adjustForPixelRatio(55), startPositionInLevel);
 
@@ -90,13 +84,12 @@ export class MainScene extends Phaser.Scene {
     this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 
     this.restartGameFn = () => {
-      this.hero.reset();
       this.score.reset();
       this.level.reset();
       this.physics.resume();
     };
 
-    createCountdown(this, 1, '#0653c7', () => {
+    createCountdown(this, 2, '#0653c7', () => {
       console.log('Start game');
       // this.physics.pause();
     });
@@ -148,7 +141,6 @@ export class MainScene extends Phaser.Scene {
   }
 
   collectPresent(present: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody) {
-    console.log('this.emitter.quantity.defaultValue', this.emitter.quantity.defaultValue);
     present.disableBody(true, true);
     this.score.update(+1);
     const presentBounds = present.getBounds();
@@ -157,7 +149,7 @@ export class MainScene extends Phaser.Scene {
     this.emitter.setEmitZone({
       source: new Phaser.Geom.Rectangle(0, 0, presentBounds.width, presentBounds.height),
       type: 'random',
-      quantity: 25,
+      quantity: 10,
     });
     this.emitter.explode();
   }

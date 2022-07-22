@@ -1,21 +1,27 @@
 import { Enemy } from './enemy';
+import { Hero } from './hero';
 import { Position } from './move-to-npm/position';
 
 export class Level {
   private scene: Phaser.Scene;
   private map: Phaser.Tilemaps.Tilemap;
   level: number;
+  hero: Hero;
   platformLayer: Phaser.Tilemaps.TilemapLayer;
   presentsLayer: Phaser.Tilemaps.TilemapLayer;
   presentGroup: Phaser.Physics.Arcade.Group;
   enemyGroup: Phaser.Physics.Arcade.Group;
+  finishSprite: Phaser.Types.Physics.Arcade.SpriteWithStaticBody;
   ladderGroup: Phaser.Physics.Arcade.Group;
   color = new Phaser.Display.Color();
 
-  constructor(scene: Phaser.Scene, map: Phaser.Tilemaps.Tilemap, level: number) {
+  constructor(scene: Phaser.Scene, map: Phaser.Tilemaps.Tilemap, level: number, hero: Hero) {
     this.scene = scene;
     this.map = map;
     this.level = level;
+    this.hero = hero;
+
+    this.finishSprite = scene.physics.add.staticSprite(0, 0, 'sprites', 'object-moringa-001.png');
 
     this.presentGroup = scene.physics.add.group({ allowGravity: false });
     this.enemyGroup = scene.physics.add.group();
@@ -34,6 +40,22 @@ export class Level {
     this.resetPresents();
     this.resetEnemies();
     this.resetLadders();
+    this.resetHero();
+    this.resetFinish();
+  }
+
+  private resetHero() {
+    const dataLayer = this.map.getObjectLayer(`level${this.level}/data`).objects;
+    const startPoint = dataLayer.find((x) => x.name === 'start');
+    this.hero.reset(startPoint!.x as number, startPoint!.y as number);
+  }
+
+  private resetFinish() {
+    const dataLayer = this.map.getObjectLayer(`level${this.level}/data`).objects;
+    const finishPoint = dataLayer.find((x) => x.name === 'finish');
+    const x = finishPoint!.x as number;
+    const y = (finishPoint!.y as number) - this.finishSprite.height / 2;
+    this.finishSprite.setPosition(x, y);
   }
 
   private resetPresents() {
@@ -59,7 +81,6 @@ export class Level {
     }
 
     const dataLayer = this.map.getObjectLayer(`level${this.level}/data`).objects;
-    // console.log(dataLayer.find((x) => x.name === 'hero'));
     const enemyObjects = dataLayer.filter((x) => x.name === 'enemy');
 
     for (const enemyObject of enemyObjects) {

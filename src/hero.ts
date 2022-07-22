@@ -1,7 +1,6 @@
 import { adjustForPixelRatio } from '@jostein-skaar/common-game';
 import { LadderClimbing } from './move-to-npm/climb-ladder';
 import { jumpWithLongPress } from './move-to-npm/jump-with-long-press';
-import { Position } from './move-to-npm/position';
 
 export class Hero {
   // TODO:} extends Phaser.Physics.Arcade.Sprite {
@@ -10,7 +9,6 @@ export class Hero {
   height: number;
   widthClimbing: number;
   heightClimbing: number;
-  startPosition: Position;
   sprite!: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
   jumpMethod: () => boolean;
   private ladderClimbing: LadderClimbing;
@@ -18,15 +16,14 @@ export class Hero {
   speedX = adjustForPixelRatio(100);
   speedY = adjustForPixelRatio(-200);
 
-  constructor(scene: Phaser.Scene, startPositionInLevel: Position) {
+  constructor(scene: Phaser.Scene) {
     this.scene = scene;
     this.width = adjustForPixelRatio(70);
     this.height = adjustForPixelRatio(55);
     this.widthClimbing = adjustForPixelRatio(32);
     this.heightClimbing = adjustForPixelRatio(70);
-    this.startPosition = { x: startPositionInLevel.x + this.width / 2, y: startPositionInLevel.y - this.height / 2 };
 
-    this.sprite = scene.physics.add.sprite(this.startPosition.x, this.startPosition.y, 'sprites', 'hero-001.png');
+    this.sprite = scene.physics.add.sprite(0, 0, 'sprites', 'hero-001.png');
     this.createAnimations();
 
     this.ladderClimbing = new LadderClimbing(this.sprite, this);
@@ -37,9 +34,11 @@ export class Hero {
     this.ladderClimbing.climb(x, y, direction);
   }
 
-  reset() {
+  reset(xInLevel: number, yInLevel: number) {
+    const x = xInLevel;
+    const y = yInLevel - this.height / 2;
     this.isDead = false;
-    this.sprite.setPosition(this.startPosition.x, this.startPosition.y);
+    this.sprite.setPosition(x, y);
   }
 
   update(delta: number) {

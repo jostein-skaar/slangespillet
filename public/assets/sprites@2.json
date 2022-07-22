@@ -10,7 +10,7 @@
 			"scale": 0.5,
 			"frames": [
 				{
-					"filename": "objects-moringa-001.png",
+					"filename": "object-moringa-001.png",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -582,6 +582,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:81224689712990ecc3c776e5ccd1ea4b:ad7d7fa831da8ccb11882ccb68ba7ebf:4a9bf2ba9afc2827dfa178a3fc41fa73$"
+		"smartupdate": "$TexturePacker:SmartUpdate:bbac9447e4fac8858565e0cc346a6d80:ad7d7fa831da8ccb11882ccb68ba7ebf:4a9bf2ba9afc2827dfa178a3fc41fa73$"
 	}
 }
