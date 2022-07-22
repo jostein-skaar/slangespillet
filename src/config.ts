@@ -20,7 +20,6 @@ export function createGameConfig(
 
     render: {
       antialias: true,
-      roundPixels: true,
       // antialias: true, // Using this to prevent flickering presents when moving (at least on iPhone with pixelRatio 3).
       // antialias: false, er default, giving a crisper appearance.
       // antialias: true, // giving a smooth appearance.
