@@ -41,10 +41,10 @@ export function createGameConfig(
       // Må fjernes etterpå, ellers vil rare ting skje i forbindelse med resize.
       // mode: scalingModePhaser,
       // autoCenter: centerModePhaser,
-      mode: Phaser.Scale.ScaleModes.FIT,
+      // mode: Phaser.Scale.ScaleModes.NONE,
       autoCenter: Phaser.Scale.Center.CENTER_BOTH,
       // mode: Phaser.Scale.ScaleModes.NONE,
-      // mode: Phaser.Scale.ScaleModes.FIT,
+      mode: Phaser.Scale.ScaleModes.FIT,
       // autoCenter: Phaser.Scale.Center.CENTER_BOTH,
       // autoCenter: Phaser.Scale.Center.CENTER_HORIZONTALLY,
       // autoCenter: Phaser.Scale.Center.CENTER_VERTICALLY,
