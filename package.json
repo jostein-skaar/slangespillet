@@ -14,7 +14,7 @@
     "vite-plugin-full-reload": "^1.0.1"
   },
   "dependencies": {
-    "@jostein-skaar/common-game": "^2.8.0",
+    "@jostein-skaar/common-game": "^2.8.1",
     "phaser": "^3.60.0-beta.8"
   }
 }
