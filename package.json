@@ -11,10 +11,10 @@
   "devDependencies": {
     "typescript": "^4.7.4",
     "vite": "^3.0.2",
-    "vite-plugin-full-reload": "^1.0.1"
+    "vite-plugin-full-reload": "^1.0.3"
   },
   "dependencies": {
-    "@jostein-skaar/common-game": "^2.8.1",
+    "@jostein-skaar/common-game": "^2.9.0",
     "phaser": "^3.60.0-beta.8"
   }
 }
