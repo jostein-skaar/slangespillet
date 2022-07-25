@@ -57,8 +57,8 @@ button.start:active {
 }
 
 #game canvas {
-  max-width: 1024px;
-  max-height: 1024px;
+  max-width: 1080px;
+  max-height: 1080px;
 }
 
 /* @media only screen and (min-device-width: 660px) and (min-device-height: 660px) {

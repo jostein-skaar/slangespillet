@@ -15,10 +15,10 @@ if (import.meta.env.PROD) {
 // TODO: GET ALL THIS FROM  common-game package
 
 // const maxWidthMap = 3200; // 100 * 32;
-const maxWidth = 1024;
-const maxHeight = 1024;
+const maxWidth = 1080;
+const maxHeight = 1080;
 
-const height = 512; // 16 * 32;
+const height = 360;
 
 const width = calculateSidescrollerWidth(height, maxWidth, maxHeight, window.innerWidth, window.innerHeight);
 
