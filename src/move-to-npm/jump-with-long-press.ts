@@ -8,6 +8,7 @@ export function jumpWithLongPress(
 ): () => boolean {
   const maxJumpingTime = 500;
   const safeMarginTop = adjustForPixelRatio(8 + 32 + 8);
+  const noJumpZoneX = adjustForPixelRatio(3200 - 200);
   let jumpTime = 0;
 
   return () => {
@@ -23,7 +24,7 @@ export function jumpWithLongPress(
     const isOnGround = spriteWithDynamicBody.body.onFloor();
     const isClimbing = ladderClimbing.isClimbing;
 
-    const isOkToJump = isOnGround || isClimbing;
+    const isOkToJump = (isOnGround || isClimbing) && spriteWithDynamicBody.x < noJumpZoneX;
 
     if (tryingToJump && isOkToJump) {
       jumpTime = delta;
