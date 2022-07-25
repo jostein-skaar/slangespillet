@@ -75,6 +75,7 @@ export class Hero {
     if (this.isPotentialHurting && this.timeSinceHurting > this.maxHurtingTime) {
       console.log('Au au');
       this.isHurting = true;
+      this.scene.events.emit('hero-hurting');
       this.hurtTween.play();
       this.timeSinceHurting = 0;
     }

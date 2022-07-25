@@ -15,6 +15,10 @@ export class MainScene extends Phaser.Scene {
   score!: Score;
   emitter!: GameObjects.Particles.ParticleEmitter;
   restartGameFn!: () => void;
+  lifeCounter = 3;
+  lifeSprite1!: GameObjects.Sprite;
+  lifeSprite2!: GameObjects.Sprite;
+  lifeSprite3!: GameObjects.Sprite;
 
   constructor() {
     super('main-scene');
@@ -59,6 +63,10 @@ export class MainScene extends Phaser.Scene {
       this.score.reset();
       this.level.reset();
       this.physics.resume();
+      this.lifeCounter = 3;
+      this.resetLife(this.lifeSprite1);
+      this.resetLife(this.lifeSprite2);
+      this.resetLife(this.lifeSprite3);
     };
 
     createCountdown(this, 2, '#0653c7', () => {
@@ -84,13 +92,23 @@ export class MainScene extends Phaser.Scene {
       quantity: 10,
     });
 
-    // this.events.on('level-finished', () => {
-    //   setTimeout(() => {
-    //     loseGame(this, this.score, () => {
-    //       this.restartGameFn();
-    //     });
-    //   }, 2000);
-    // });
+    this.events.on('hero-hurting', () => {
+      if (this.lifeCounter === 0) {
+        this.hero.isDead = true;
+        loseGame(this, this.score, () => {
+          this.restartGameFn();
+        });
+      } else {
+        this.lifeCounter--;
+        if (this.lifeCounter === 2) {
+          this.removeLife(this.lifeSprite3);
+        } else if (this.lifeCounter === 1) {
+          this.removeLife(this.lifeSprite2);
+        } else if (this.lifeCounter === 0) {
+          this.removeLife(this.lifeSprite1);
+        }
+      }
+    });
   }
 
   update(_time: number, delta: number): void {
@@ -119,19 +137,25 @@ export class MainScene extends Phaser.Scene {
   }
 
   private createLifes() {
-    const lifeSprite1 = this.add.sprite(0, 0, 'sprites', 'ui-life-001.png');
-    const lifeSprite2 = this.add.sprite(adjustForPixelRatio(32 + 5), 0, 'sprites', 'ui-life-001.png');
-    const lifeSprite3 = this.add.sprite(adjustForPixelRatio(32 + 5) * 2, 0, 'sprites', 'ui-life-001.png');
-
-    // lifeSprite2.setTint(0xaaaaaa);
-    // lifeSprite2.setAlpha(0.7);
+    this.lifeSprite1 = this.add.sprite(0, 0, 'sprites', 'ui-life-001.png');
+    this.lifeSprite2 = this.add.sprite(adjustForPixelRatio(32 + 5), 0, 'sprites', 'ui-life-001.png');
+    this.lifeSprite3 = this.add.sprite(adjustForPixelRatio(32 + 5) * 2, 0, 'sprites', 'ui-life-001.png');
 
     const container = new Phaser.GameObjects.Container(this, 0, adjustForPixelRatio(8 + 16), [
-      lifeSprite1,
-      lifeSprite2,
-      lifeSprite3,
+      this.lifeSprite1,
+      this.lifeSprite2,
+      this.lifeSprite3,
     ]).setScrollFactor(0);
-    container.setX(this.scale.width / 2 - lifeSprite3.x / 2);
+    container.setX(this.scale.width / 2 - this.lifeSprite3.x / 2);
     this.add.existing(container);
+  }
+
+  private removeLife(lifeSprite: GameObjects.Sprite) {
+    lifeSprite.setTint(0xaaaaaa);
+    lifeSprite.setAlpha(0.7);
+  }
+  private resetLife(lifeSprite: GameObjects.Sprite) {
+    lifeSprite.setTint(undefined);
+    lifeSprite.setAlpha(1);
   }
 }
