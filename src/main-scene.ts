@@ -7,7 +7,6 @@ import { Level } from './level';
 import { preload } from './preload';
 import { createScoreText, loseGame } from './slangespillet';
 import { Icon } from './move-to-npm/icon';
-import { Enemy } from './enemy';
 
 export class MainScene extends Phaser.Scene {
   map!: Phaser.Tilemaps.Tilemap;
@@ -38,46 +37,19 @@ export class MainScene extends Phaser.Scene {
 
     this.level = new Level(this, this.map, 1, this.hero);
 
-    // const hero = new Hero(adjustForPixelRatio(70), adjustForPixelRatio(55), startPositionInLevel);
-
     this.physics.add.collider(this.hero.sprite, this.level.platformLayer);
     this.physics.add.collider(this.level.enemyGroup, this.level.platformLayer);
 
-    // this.physics.add.overlap(this.hero.sprite, platformLayer, (_helt, tile: any) => {
-    //   if (tile.properties['ladderup'] === true) {
-    //     this.hero.climbUpLadder(tile);
-    //   } else if (tile.properties['ladderdown'] === true) {
-    //     this.hero.climbDownLadder(tile);
-    //   }
-    // });
-
     this.score = new Score('slangespillet-best-score', 1, createScoreText(this));
+
+    this.createLifes();
 
     this.physics.add.overlap(this.hero.sprite, this.level.presentGroup, (_helt, present: any) => {
       this.collectPresent(present);
     });
 
-    this.physics.add.overlap(this.hero.sprite, this.level.enemyGroup, (_helt, enemy: any) => {
-      enemy = enemy as Enemy;
-      if (enemy.body.touching.up) {
-        enemy.kill();
-      } else {
-        console.log('Au au');
-      }
-    });
-
     this.physics.add.overlap(this.hero.sprite, this.level.ladderGroup, (_helt, hitBox: any) => {
-      // hitBox.destroy();
       this.hero.climbLadder(hitBox.x, hitBox.y, hitBox.direction);
-
-      // const intervalCheck = setInterval(() => {
-      //   if (ladderDirection === -1) {
-      //     if (this.hero.sprite.x >= hitBox.x + this.hero.width / 2 - adjustForPixelRatio(50)) {
-      //       this.hero.climbLadder(hitBox.x, ladderDirection);
-      //       clearInterval(intervalCheck);
-      //     }
-      //   }
-      // }, 10);
     });
 
     this.cameras.main.startFollow(this.hero.sprite);
@@ -104,10 +76,6 @@ export class MainScene extends Phaser.Scene {
       }
     });
 
-    // new Icon(this, 'gear', adjustForPixelRatio(8 + 8 + 32), adjustForPixelRatio(8), 0x0066ff, 0x00ffff, () => {
-    //   console.log('Settings');
-    // });
-
     this.emitter = this.add.particles('sprites', 'particle-star-001.png').createEmitter({
       scale: { start: 1, end: 0 },
       speed: { min: 0, max: 200 },
@@ -115,22 +83,14 @@ export class MainScene extends Phaser.Scene {
       lifespan: 500,
       quantity: 10,
     });
-  }
 
-  enemyDirection = 1;
+    this.events.on('level-finished', () => {
+      console.log('yeah');
+    });
+  }
 
   update(_time: number, delta: number): void {
     this.hero.update(delta);
-
-    // this.enemy01.setVelocityX(this.enemyDirection * 40);
-
-    // if (this.enemyDirection === 1 && this.enemy01.x > this.hero.sprite.x + 500) {
-    //   this.enemyDirection = -1;
-    //   this.enemy01.flipX = true;
-    // } else if (this.enemyDirection === -1 && this.enemy01.x < this.hero.sprite.x) {
-    //   this.enemyDirection = 1;
-    //   this.enemy01.flipX = false;
-    // }
 
     if (this.hero.sprite.x > this.map.widthInPixels || this.hero.sprite.y > this.map.heightInPixels) {
       this.hero.isDead = true;
@@ -152,5 +112,19 @@ export class MainScene extends Phaser.Scene {
       quantity: 10,
     });
     this.emitter.explode();
+  }
+
+  private createLifes() {
+    const lifeSprite1 = this.add.sprite(0, 0, 'sprites', 'ui-life-001.png');
+    const lifeSprite2 = this.add.sprite(adjustForPixelRatio(32 + 5), 0, 'sprites', 'ui-life-001.png');
+    const lifeSprite3 = this.add.sprite(adjustForPixelRatio(32 + 5) * 2, 0, 'sprites', 'ui-life-001.png');
+
+    const container = new Phaser.GameObjects.Container(this, 0, adjustForPixelRatio(8 + 16), [
+      lifeSprite1,
+      lifeSprite2,
+      lifeSprite3,
+    ]).setScrollFactor(0);
+    container.setX(this.scale.width / 2 - lifeSprite3.x / 2);
+    this.add.existing(container);
   }
 }

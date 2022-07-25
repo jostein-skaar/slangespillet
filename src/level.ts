@@ -14,6 +14,7 @@ export class Level {
   finishSprite: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
   ladderGroup: Phaser.Physics.Arcade.Group;
   color = new Phaser.Display.Color();
+  finished = false;
 
   constructor(scene: Phaser.Scene, map: Phaser.Tilemaps.Tilemap, level: number, hero: Hero) {
     this.scene = scene;
@@ -25,10 +26,6 @@ export class Level {
     this.finishSprite.setImmovable();
     this.finishSprite.body.setAllowGravity(false);
 
-    scene.physics.add.overlap(this.hero.sprite, this.finishSprite, (_helt, _finish) => {
-      console.log('Finished game');
-    });
-
     this.presentGroup = scene.physics.add.group({ allowGravity: false });
     this.enemyGroup = scene.physics.add.group();
 
@@ -39,6 +36,24 @@ export class Level {
     this.platformLayer = map.createLayer(`level${level}/level`, [tiles]);
     this.platformLayer.setCollisionByProperty({ ground: true });
     this.presentsLayer = map.createLayer(`level${level}/presents`, [tiles]);
+
+    scene.physics.add.overlap(this.hero.sprite, this.enemyGroup, (_helt, enemy: any) => {
+      enemy = enemy as Enemy;
+      if (enemy.body.touching.up) {
+        enemy.kill();
+      } else {
+        console.log('Au au');
+        this.scene.events.emit('hero-hurting');
+      }
+    });
+
+    scene.physics.add.overlap(this.hero.sprite, this.finishSprite, (_helt, _finish) => {
+      if (!this.finished) {
+        this.scene.events.emit('level-finished');
+        this.finished = true;
+      }
+    });
+
     this.reset();
   }
 
@@ -108,47 +123,6 @@ export class Level {
         enemy.reset(startPositionInMap, endPositionInMap);
       }
     }
-
-    // for (let index = 0; index < 5; index++) {
-    //   let enemy = this.enemyGroup.getFirstDead() as Enemy;
-    //   if (enemy === null) {
-    //     enemy = new Enemy(
-    //       this.scene,
-    //       Phaser.Math.Between(0, this.map.widthInPixels),
-    //       Phaser.Math.Between(0, this.map.heightInPixels) - adjustForPixelRatio(50) / 2,
-    //       this.color.random(60, 240).color,
-    //       this.hero
-    //     );
-    //     this.enemyGroup.add(enemy);
-    //   } else {
-    //     enemy.setPosition(
-    //       Phaser.Math.Between(0, this.map.widthInPixels),
-    //       Phaser.Math.Between(0, this.map.heightInPixels) - adjustForPixelRatio(50) / 2
-    //     );
-    //     enemy.setActive(true);
-    //   }
-    // }
-
-    // const enemy1 = new Enemy(
-    //   this,
-    //   startPositionInLevel.x + 220,
-    //   startPositionInLevel.y - adjustForPixelRatio(50) / 2,
-    //   color.random(60, 240).color,
-    //   this.hero
-    // );
-    // this.level.enemyGroup.add(enemy1);
-
-    // const enemy2 = new Enemy(
-    //   this,
-    //   startPositionInLevel.x + 330,
-    //   startPositionInLevel.y - adjustForPixelRatio(50) / 2,
-    //   color.random(60, 240).color,
-    //   this.hero
-    // );
-    // this.level.enemyGroup.add(enemy2);
-
-    // const enemy3 = new Enemy(this, startPositionInLevel.x + 700, adjustForPixelRatio(200), color.random(60, 240).color, this.hero);
-    // this.level.enemyGroup.add(enemy3);
   }
 
   private resetLadders() {

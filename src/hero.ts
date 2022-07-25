@@ -42,7 +42,7 @@ export class Hero {
   }
 
   update(delta: number) {
-    this.updateAnimations(this.scene.physics.world.isPaused, this.ladderClimbing.isClimbing);
+    this.updateAnimations(this.scene.physics.world.isPaused, this.ladderClimbing.isClimbing, false);
     const isJumping = this.jumpMethod();
 
     if (this.ladderClimbing.isHappening) {
@@ -99,7 +99,7 @@ export class Hero {
     });
   }
 
-  private updateAnimations(isPaused: boolean, isClimbing: boolean) {
+  private updateAnimations(isPaused: boolean, isClimbing: boolean, isEating: boolean) {
     if (this.isDead) {
       this.sprite.setTint(0xff0000);
       this.sprite.play('stand', true);
@@ -112,6 +112,8 @@ export class Hero {
 
     if (isClimbing) {
       this.sprite.play('climb', true);
+    } else if (isEating) {
+      this.sprite.play('eat', true);
     } else {
       if (this.sprite.body.onFloor() && !this.sprite.body.onWall()) {
         this.sprite.play('walk', true);
