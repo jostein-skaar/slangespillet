@@ -16,12 +16,14 @@ export class Level {
   ladderGroup: Phaser.Physics.Arcade.Group;
   color = new Phaser.Display.Color();
   finished = false;
+  // offsetY = 0;
 
   constructor(scene: Phaser.Scene, map: Phaser.Tilemaps.Tilemap, level: number, hero: Hero) {
     this.scene = scene;
     this.map = map;
     this.level = level;
     this.hero = hero;
+    // this.offsetY = adjustForPixelRatio(scene.scale.height - 11 * 32);
 
     this.finishSprite = scene.physics.add.sprite(0, 0, 'sprites', 'object-moringa-001.png');
     this.finishSprite.setSize(adjustForPixelRatio(1), this.scene.scale.height * 2);
@@ -46,7 +48,7 @@ export class Level {
     const tiles = map.getTileset('tiles');
 
     this.platformLayer = map.createLayer(`level${level}/level`, [tiles]);
-    this.platformLayer.setCollisionByProperty({ ground: true });
+    this.platformLayer.setCollisionByProperty({ ground: true }, true, false);
     this.presentsLayer = map.createLayer(`level${level}/presents`, [tiles]);
 
     scene.physics.add.overlap(this.hero.sprite, this.enemyGroup, (_helt, enemy: any) => {
@@ -54,8 +56,13 @@ export class Level {
       if (enemy.body.touching.up) {
         enemy.kill();
       } else {
-        console.log('Au au');
-        this.scene.events.emit('hero-hurting');
+        this.hero.isPotentialHurting = true;
+      }
+    });
+
+    scene.physics.add.collider(this.hero.sprite, this.platformLayer, (_hero, tile: any) => {
+      if (tile.properties.lava || tile.properties.water) {
+        this.hero.isPotentialHurting = true;
       }
     });
 

@@ -16,6 +16,11 @@ export class Hero {
   isDead = false;
   speedX = adjustForPixelRatio(100);
   speedY = adjustForPixelRatio(-200);
+  isHurting = false;
+  isPotentialHurting = false;
+  hurtTween: Phaser.Tweens.Tween;
+  maxHurtingTime = 2000;
+  timeSinceHurting: number = 0;
 
   constructor(scene: Phaser.Scene) {
     this.scene = scene;
@@ -33,6 +38,22 @@ export class Hero {
     this.scene.events.on('level-finished', () => {
       this.isEating = true;
     });
+
+    this.hurtTween = scene.tweens.add({
+      targets: this.sprite,
+      scale: 0.8,
+      ease: 'Power0',
+      duration: 40,
+      yoyo: true,
+      repeat: 10,
+      paused: true,
+      onActive: () => {
+        this.sprite.setTint(0xff0000);
+      },
+      onComplete: () => {
+        this.sprite.setTint(undefined);
+      },
+    });
   }
 
   climbLadder(x: number, y: number, direction: number) {
@@ -48,7 +69,21 @@ export class Hero {
   }
 
   update(delta: number) {
-    this.updateAnimations(this.scene.physics.world.isPaused, this.ladderClimbing.isClimbing, this.isEating);
+    if (this.timeSinceHurting > this.maxHurtingTime) {
+      this.isHurting = false;
+    }
+    if (this.isPotentialHurting && this.timeSinceHurting > this.maxHurtingTime) {
+      console.log('Au au');
+      this.isHurting = true;
+      this.hurtTween.play();
+      this.timeSinceHurting = 0;
+    }
+
+    this.timeSinceHurting += this.scene.game.loop.delta;
+
+    // console.log('this.timeSinceHurting counter', this.timeSinceHurting);
+
+    this.updateAnimations(this.scene.physics.world.isPaused, this.ladderClimbing.isClimbing, this.isHurting, this.isEating);
     const isJumping = this.jumpMethod();
 
     if (this.isEating) {
@@ -65,6 +100,9 @@ export class Hero {
         this.sprite.setVelocityY(this.speedY);
       }
     }
+
+    // Reset in every update.
+    this.isPotentialHurting = false;
   }
 
   private createAnimations() {
@@ -107,13 +145,17 @@ export class Hero {
     });
   }
 
-  private updateAnimations(isPaused: boolean, isClimbing: boolean, isEating: boolean) {
+  private updateAnimations(isPaused: boolean, isClimbing: boolean, isHurting: boolean, isEating: boolean) {
     if (this.isDead) {
       this.sprite.setTint(0xff0000);
       this.sprite.play('stand', true);
       return;
+    } else if (isHurting) {
+      // Tinting handeled by tween
+    } else {
+      this.sprite.setTint(undefined);
     }
-    this.sprite.setTint(undefined);
+
     if (isPaused) {
       return;
     }
