@@ -92,12 +92,7 @@ export class MainScene extends Phaser.Scene {
     });
 
     this.events.on('hero-hurting', () => {
-      if (this.lifeCounter === 0) {
-        this.hero.isDead = true;
-        loseGame(this, this.score, () => {
-          this.restartGameFn();
-        });
-      } else {
+      if (this.lifeCounter > 0) {
         this.lifeCounter--;
         if (this.lifeCounter === 2) {
           this.removeLife(this.lifeSprite3);
@@ -106,6 +101,13 @@ export class MainScene extends Phaser.Scene {
         } else if (this.lifeCounter === 0) {
           this.removeLife(this.lifeSprite1);
         }
+      }
+
+      if (this.lifeCounter === 0) {
+        this.hero.isDead = true;
+        loseGame(this, this.score, () => {
+          this.restartGameFn();
+        });
       }
     });
   }
