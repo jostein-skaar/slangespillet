@@ -71,7 +71,6 @@ export class MainScene extends Phaser.Scene {
 
     createCountdown(this, 2, '#0653c7', () => {
       console.log('Start game');
-      // this.physics.pause();
     });
 
     new Icon(this, 'pause', adjustForPixelRatio(8), adjustForPixelRatio(8), 0x0066ff, 0xe7f5ff, () => {

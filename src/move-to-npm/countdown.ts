@@ -4,8 +4,10 @@ import { adjustForPixelRatio } from '@jostein-skaar/common-game';
 
 export function createCountdown(scene: Phaser.Scene, count: number, color: string, countdownFinishedCallback: () => void) {
   scene.physics.pause();
+  scene.anims.pauseAll();
   const countdownFinished = () => {
     scene.physics.resume();
+    scene.anims.resumeAll();
     countdownFinishedCallback();
   };
   const countdownText = scene.add

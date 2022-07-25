@@ -11,9 +11,12 @@ export function loseGame(scene: Phaser.Scene, score: Score, startGameFn: () => v
   const reset = () => {
     scene.cameras.main.setBackgroundColor();
     textElement.setVisible(false);
+    scene.physics.resume();
+    scene.anims.resumeAll();
   };
 
   scene.physics.pause();
+  scene.anims.pauseAll();
 
   scene.cameras.main.setBackgroundColor(0xbababa);
 
