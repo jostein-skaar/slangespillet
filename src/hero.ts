@@ -47,6 +47,10 @@ export class Hero {
 
     if (this.ladderClimbing.isHappening) {
       this.ladderClimbing.update(delta);
+      // Need to keep moving until we actual climb
+      if (!this.ladderClimbing.isClimbing) {
+        this.sprite.setVelocityX(this.speedX);
+      }
     } else {
       this.sprite.setVelocityX(this.speedX);
       if (isJumping) {
@@ -78,10 +82,18 @@ export class Hero {
       frameRate: 6,
     });
     this.sprite.anims.create({
-      key: 'climb',
+      key: 'eat',
       frames: [
         { key: 'sprites', frame: 'hero-005.png' },
         { key: 'sprites', frame: 'hero-006.png' },
+      ],
+      frameRate: 5,
+    });
+    this.sprite.anims.create({
+      key: 'climb',
+      frames: [
+        { key: 'sprites', frame: 'hero-007.png' },
+        { key: 'sprites', frame: 'hero-008.png' },
       ],
       frameRate: 5,
     });
