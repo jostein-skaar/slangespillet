@@ -12,6 +12,7 @@ export class Hero {
   sprite!: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
   jumpMethod: () => boolean;
   private ladderClimbing: LadderClimbing;
+  isEating = false;
   isDead = false;
   speedX = adjustForPixelRatio(100);
   speedY = adjustForPixelRatio(-200);
@@ -28,6 +29,10 @@ export class Hero {
 
     this.ladderClimbing = new LadderClimbing(this.sprite, this);
     this.jumpMethod = jumpWithLongPress(scene, this.sprite, this.ladderClimbing);
+
+    this.scene.events.on('level-finished', () => {
+      this.isEating = true;
+    });
   }
 
   climbLadder(x: number, y: number, direction: number) {
@@ -38,14 +43,17 @@ export class Hero {
     const x = xInLevel;
     const y = yInLevel - this.height / 2;
     this.isDead = false;
+    this.isEating = false;
     this.sprite.setPosition(x, y);
   }
 
   update(delta: number) {
-    this.updateAnimations(this.scene.physics.world.isPaused, this.ladderClimbing.isClimbing, false);
+    this.updateAnimations(this.scene.physics.world.isPaused, this.ladderClimbing.isClimbing, this.isEating);
     const isJumping = this.jumpMethod();
 
-    if (this.ladderClimbing.isHappening) {
+    if (this.isEating) {
+      this.sprite.setVelocityX(this.speedX / 2);
+    } else if (this.ladderClimbing.isHappening) {
       this.ladderClimbing.update(delta);
       // Need to keep moving until we actual climb
       if (!this.ladderClimbing.isClimbing) {

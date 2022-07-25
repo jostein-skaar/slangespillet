@@ -4,74 +4,11 @@
 			"image": "sprites@3.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 512,
-				"h": 1255
+				"w": 965,
+				"h": 501
 			},
 			"scale": 0.75,
 			"frames": [
-				{
-					"filename": "object-moringa-001.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 300,
-						"h": 600
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 300,
-						"h": 600
-					},
-					"frame": {
-						"x": 1,
-						"y": 1,
-						"w": 300,
-						"h": 600
-					}
-				},
-				{
-					"filename": "enemy-body-003.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 240,
-						"h": 105
-					},
-					"spriteSourceSize": {
-						"x": 29,
-						"y": 32,
-						"w": 208,
-						"h": 73
-					},
-					"frame": {
-						"x": 303,
-						"y": 1,
-						"w": 208,
-						"h": 73
-					}
-				},
-				{
-					"filename": "hero-002.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 210,
-						"h": 165
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 0,
-						"w": 205,
-						"h": 165
-					},
-					"frame": {
-						"x": 303,
-						"y": 76,
-						"w": 205,
-						"h": 165
-					}
-				},
 				{
 					"filename": "hero-007.png",
 					"rotated": false,
@@ -87,8 +24,8 @@
 						"h": 210
 					},
 					"frame": {
-						"x": 303,
-						"y": 243,
+						"x": 1,
+						"y": 1,
 						"w": 96,
 						"h": 210
 					}
@@ -108,94 +45,10 @@
 						"h": 210
 					},
 					"frame": {
-						"x": 401,
-						"y": 243,
+						"x": 1,
+						"y": 213,
 						"w": 96,
 						"h": 210
-					}
-				},
-				{
-					"filename": "icon-bg-001.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 96,
-						"h": 96
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 96,
-						"h": 96
-					},
-					"frame": {
-						"x": 303,
-						"y": 455,
-						"w": 96,
-						"h": 96
-					}
-				},
-				{
-					"filename": "icon-gear-001.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 96,
-						"h": 96
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 96,
-						"h": 96
-					},
-					"frame": {
-						"x": 401,
-						"y": 455,
-						"w": 96,
-						"h": 96
-					}
-				},
-				{
-					"filename": "icon-gear-002.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 96,
-						"h": 96
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 96,
-						"h": 96
-					},
-					"frame": {
-						"x": 303,
-						"y": 553,
-						"w": 96,
-						"h": 96
-					}
-				},
-				{
-					"filename": "icon-pause-001.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 96,
-						"h": 96
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 96,
-						"h": 96
-					},
-					"frame": {
-						"x": 401,
-						"y": 553,
-						"w": 96,
-						"h": 96
 					}
 				},
 				{
@@ -214,135 +67,9 @@
 					},
 					"frame": {
 						"x": 1,
-						"y": 603,
+						"y": 425,
 						"w": 236,
 						"h": 73
-					}
-				},
-				{
-					"filename": "enemy-hair-003.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 240,
-						"h": 105
-					},
-					"spriteSourceSize": {
-						"x": 174,
-						"y": 0,
-						"w": 58,
-						"h": 46
-					},
-					"frame": {
-						"x": 239,
-						"y": 603,
-						"w": 58,
-						"h": 46
-					}
-				},
-				{
-					"filename": "enemy-body-002.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 240,
-						"h": 105
-					},
-					"spriteSourceSize": {
-						"x": 10,
-						"y": 32,
-						"w": 227,
-						"h": 73
-					},
-					"frame": {
-						"x": 239,
-						"y": 651,
-						"w": 227,
-						"h": 73
-					}
-				},
-				{
-					"filename": "enemy-teeth-001.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 240,
-						"h": 105
-					},
-					"spriteSourceSize": {
-						"x": 213,
-						"y": 59,
-						"w": 27,
-						"h": 36
-					},
-					"frame": {
-						"x": 468,
-						"y": 651,
-						"w": 27,
-						"h": 36
-					}
-				},
-				{
-					"filename": "enemy-eye-002.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 240,
-						"h": 105
-					},
-					"spriteSourceSize": {
-						"x": 210,
-						"y": 49,
-						"w": 13,
-						"h": 4
-					},
-					"frame": {
-						"x": 497,
-						"y": 651,
-						"w": 13,
-						"h": 4
-					}
-				},
-				{
-					"filename": "enemy-tounge-002.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 240,
-						"h": 105
-					},
-					"spriteSourceSize": {
-						"x": 209,
-						"y": 65,
-						"w": 26,
-						"h": 38
-					},
-					"frame": {
-						"x": 468,
-						"y": 689,
-						"w": 26,
-						"h": 38
-					}
-				},
-				{
-					"filename": "enemy-eye-001.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 240,
-						"h": 105
-					},
-					"spriteSourceSize": {
-						"x": 209,
-						"y": 43,
-						"w": 15,
-						"h": 15
-					},
-					"frame": {
-						"x": 496,
-						"y": 689,
-						"w": 15,
-						"h": 15
 					}
 				},
 				{
@@ -360,8 +87,8 @@
 						"h": 165
 					},
 					"frame": {
-						"x": 1,
-						"y": 678,
+						"x": 99,
+						"y": 1,
 						"w": 210,
 						"h": 165
 					}
@@ -381,10 +108,31 @@
 						"h": 165
 					},
 					"frame": {
-						"x": 213,
-						"y": 726,
+						"x": 99,
+						"y": 168,
 						"w": 210,
 						"h": 165
+					}
+				},
+				{
+					"filename": "ui-life-001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 8,
+						"w": 96,
+						"h": 88
+					},
+					"frame": {
+						"x": 99,
+						"y": 335,
+						"w": 96,
+						"h": 88
 					}
 				},
 				{
@@ -402,14 +150,14 @@
 						"h": 165
 					},
 					"frame": {
-						"x": 1,
-						"y": 845,
+						"x": 239,
+						"y": 335,
 						"w": 210,
 						"h": 165
 					}
 				},
 				{
-					"filename": "enemy-tounge-001.png",
+					"filename": "enemy-teeth-001.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -417,20 +165,20 @@
 						"h": 105
 					},
 					"spriteSourceSize": {
-						"x": 206,
-						"y": 56,
-						"w": 25,
-						"h": 37
+						"x": 213,
+						"y": 59,
+						"w": 27,
+						"h": 36
 					},
 					"frame": {
-						"x": 425,
-						"y": 726,
-						"w": 25,
-						"h": 37
+						"x": 197,
+						"y": 335,
+						"w": 27,
+						"h": 36
 					}
 				},
 				{
-					"filename": "enemy-hair-001.png",
+					"filename": "enemy-tounge-002.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -438,20 +186,20 @@
 						"h": 105
 					},
 					"spriteSourceSize": {
-						"x": 175,
-						"y": 0,
-						"w": 57,
-						"h": 46
+						"x": 209,
+						"y": 65,
+						"w": 26,
+						"h": 38
 					},
 					"frame": {
-						"x": 452,
-						"y": 729,
-						"w": 57,
-						"h": 46
+						"x": 197,
+						"y": 373,
+						"w": 26,
+						"h": 38
 					}
 				},
 				{
-					"filename": "enemy-hair-002.png",
+					"filename": "enemy-eye-002.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -459,16 +207,16 @@
 						"h": 105
 					},
 					"spriteSourceSize": {
-						"x": 176,
-						"y": 0,
-						"w": 56,
-						"h": 46
+						"x": 210,
+						"y": 49,
+						"w": 13,
+						"h": 4
 					},
 					"frame": {
-						"x": 425,
-						"y": 777,
-						"w": 56,
-						"h": 46
+						"x": 197,
+						"y": 413,
+						"w": 13,
+						"h": 4
 					}
 				},
 				{
@@ -486,8 +234,8 @@
 						"h": 165
 					},
 					"frame": {
-						"x": 213,
-						"y": 893,
+						"x": 311,
+						"y": 1,
 						"w": 210,
 						"h": 165
 					}
@@ -507,10 +255,283 @@
 						"h": 165
 					},
 					"frame": {
-						"x": 1,
-						"y": 1012,
+						"x": 311,
+						"y": 168,
 						"w": 210,
 						"h": 165
+					}
+				},
+				{
+					"filename": "hero-002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 210,
+						"h": 165
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 0,
+						"w": 205,
+						"h": 165
+					},
+					"frame": {
+						"x": 451,
+						"y": 335,
+						"w": 205,
+						"h": 165
+					}
+				},
+				{
+					"filename": "enemy-body-002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 240,
+						"h": 105
+					},
+					"spriteSourceSize": {
+						"x": 10,
+						"y": 32,
+						"w": 227,
+						"h": 73
+					},
+					"frame": {
+						"x": 658,
+						"y": 1,
+						"w": 227,
+						"h": 73
+					}
+				},
+				{
+					"filename": "object-moringa-001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 120,
+						"h": 150
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 120,
+						"h": 150
+					},
+					"frame": {
+						"x": 523,
+						"y": 1,
+						"w": 120,
+						"h": 150
+					}
+				},
+				{
+					"filename": "enemy-hair-003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 240,
+						"h": 105
+					},
+					"spriteSourceSize": {
+						"x": 174,
+						"y": 0,
+						"w": 58,
+						"h": 46
+					},
+					"frame": {
+						"x": 887,
+						"y": 1,
+						"w": 58,
+						"h": 46
+					}
+				},
+				{
+					"filename": "enemy-eye-001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 240,
+						"h": 105
+					},
+					"spriteSourceSize": {
+						"x": 209,
+						"y": 43,
+						"w": 15,
+						"h": 15
+					},
+					"frame": {
+						"x": 947,
+						"y": 1,
+						"w": 15,
+						"h": 15
+					}
+				},
+				{
+					"filename": "enemy-hair-001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 240,
+						"h": 105
+					},
+					"spriteSourceSize": {
+						"x": 175,
+						"y": 0,
+						"w": 57,
+						"h": 46
+					},
+					"frame": {
+						"x": 887,
+						"y": 49,
+						"w": 57,
+						"h": 46
+					}
+				},
+				{
+					"filename": "enemy-body-003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 240,
+						"h": 105
+					},
+					"spriteSourceSize": {
+						"x": 29,
+						"y": 32,
+						"w": 208,
+						"h": 73
+					},
+					"frame": {
+						"x": 658,
+						"y": 76,
+						"w": 208,
+						"h": 73
+					}
+				},
+				{
+					"filename": "icon-bg-001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 868,
+						"y": 97,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "object-moringa-002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 120,
+						"h": 150
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 120,
+						"h": 149
+					},
+					"frame": {
+						"x": 523,
+						"y": 153,
+						"w": 120,
+						"h": 149
+					}
+				},
+				{
+					"filename": "object-moringa-003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 120,
+						"h": 150
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 0,
+						"w": 117,
+						"h": 148
+					},
+					"frame": {
+						"x": 645,
+						"y": 151,
+						"w": 117,
+						"h": 148
+					}
+				},
+				{
+					"filename": "icon-gear-001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 764,
+						"y": 151,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "icon-gear-002.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 862,
+						"y": 195,
+						"w": 96,
+						"h": 96
+					}
+				},
+				{
+					"filename": "icon-pause-001.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 96,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 96,
+						"h": 96
+					},
+					"frame": {
+						"x": 764,
+						"y": 249,
+						"w": 96,
+						"h": 96
 					}
 				},
 				{
@@ -528,8 +549,8 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 213,
-						"y": 1060,
+						"x": 862,
+						"y": 293,
 						"w": 96,
 						"h": 96
 					}
@@ -549,8 +570,8 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 311,
-						"y": 1060,
+						"x": 658,
+						"y": 301,
 						"w": 96,
 						"h": 96
 					}
@@ -570,8 +591,8 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 409,
-						"y": 1060,
+						"x": 658,
+						"y": 399,
 						"w": 96,
 						"h": 96
 					}
@@ -591,10 +612,31 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 213,
-						"y": 1158,
+						"x": 756,
+						"y": 347,
 						"w": 96,
 						"h": 96
+					}
+				},
+				{
+					"filename": "enemy-hair-002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 240,
+						"h": 105
+					},
+					"spriteSourceSize": {
+						"x": 176,
+						"y": 0,
+						"w": 56,
+						"h": 46
+					},
+					"frame": {
+						"x": 756,
+						"y": 445,
+						"w": 56,
+						"h": 46
 					}
 				},
 				{
@@ -612,31 +654,31 @@
 						"h": 96
 					},
 					"frame": {
-						"x": 311,
-						"y": 1158,
+						"x": 854,
+						"y": 391,
 						"w": 96,
 						"h": 96
 					}
 				},
 				{
-					"filename": "ui-life-001.png",
+					"filename": "enemy-tounge-001.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 96,
-						"h": 96
+						"w": 240,
+						"h": 105
 					},
 					"spriteSourceSize": {
-						"x": 0,
-						"y": 8,
-						"w": 96,
-						"h": 88
+						"x": 206,
+						"y": 56,
+						"w": 25,
+						"h": 37
 					},
 					"frame": {
-						"x": 409,
-						"y": 1158,
-						"w": 96,
-						"h": 88
+						"x": 814,
+						"y": 445,
+						"w": 25,
+						"h": 37
 					}
 				}
 			]
@@ -645,6 +687,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:c2c55401259efff1187455cbcabee0ed:816583cfa87b93695738aaf6f961494f:4a9bf2ba9afc2827dfa178a3fc41fa73$"
+		"smartupdate": "$TexturePacker:SmartUpdate:f5b4a36e9718fa14ce1055bc3f86d385:33349b7e86f24fb7e2bf96da7507cc00:4a9bf2ba9afc2827dfa178a3fc41fa73$"
 	}
 }

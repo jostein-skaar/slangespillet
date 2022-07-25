@@ -84,15 +84,19 @@ export class MainScene extends Phaser.Scene {
       quantity: 10,
     });
 
-    this.events.on('level-finished', () => {
-      console.log('yeah');
-    });
+    // this.events.on('level-finished', () => {
+    //   setTimeout(() => {
+    //     loseGame(this, this.score, () => {
+    //       this.restartGameFn();
+    //     });
+    //   }, 2000);
+    // });
   }
 
   update(_time: number, delta: number): void {
     this.hero.update(delta);
 
-    if (this.hero.sprite.x > this.map.widthInPixels || this.hero.sprite.y > this.map.heightInPixels) {
+    if (this.hero.sprite.x - this.hero.width / 2 > this.map.widthInPixels || this.hero.sprite.y > this.map.heightInPixels) {
       this.hero.isDead = true;
       loseGame(this, this.score, () => {
         this.restartGameFn();

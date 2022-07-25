@@ -1,3 +1,4 @@
+import { adjustForPixelRatio } from '@jostein-skaar/common-game';
 import { Enemy } from './enemy';
 import { Hero } from './hero';
 import { Position } from './move-to-npm/position';
@@ -23,8 +24,19 @@ export class Level {
     this.hero = hero;
 
     this.finishSprite = scene.physics.add.sprite(0, 0, 'sprites', 'object-moringa-001.png');
+    this.finishSprite.setSize(adjustForPixelRatio(1), this.scene.scale.height * 2);
     this.finishSprite.setImmovable();
     this.finishSprite.body.setAllowGravity(false);
+    this.finishSprite.setDepth(this.hero.sprite.depth + 1);
+    this.finishSprite.anims.create({
+      key: 'moringa-eaten',
+      frames: [
+        { key: 'sprites', frame: 'object-moringa-002.png' },
+        { key: 'sprites', frame: 'object-moringa-003.png' },
+      ],
+      frameRate: 4,
+      repeat: -1,
+    });
 
     this.presentGroup = scene.physics.add.group({ allowGravity: false });
     this.enemyGroup = scene.physics.add.group();
@@ -49,9 +61,12 @@ export class Level {
 
     scene.physics.add.overlap(this.hero.sprite, this.finishSprite, (_helt, _finish) => {
       if (!this.finished) {
+        this.finishSprite.setRotation(0.4);
         this.scene.events.emit('level-finished');
         this.finished = true;
+        this.finishSprite.anims.play('moringa-eaten');
       }
+      this.finishSprite.setX(this.hero.sprite.x + this.hero.width / 2);
     });
 
     this.reset();
