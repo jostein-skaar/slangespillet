@@ -58,8 +58,8 @@ export class MainScene extends Phaser.Scene {
 
     this.cameras.main.startFollow(this.hero.sprite);
     this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
-    // If portrait, we want our hero to be a little more to the left to be able to see what is in front.
     if (this.scale.height > this.scale.width) {
+      // If portrait, we want our hero to be a little more to the left to be able to see what is in front.
       const followOffset = -this.scale.width / 4;
       this.cameras.main.setFollowOffset(followOffset);
     }
@@ -147,7 +147,7 @@ export class MainScene extends Phaser.Scene {
     this.lifeSprite2 = this.add.sprite(adjustForPixelRatio(24 + 5), 0, 'sprites', 'ui-life-001.png');
     this.lifeSprite3 = this.add.sprite(adjustForPixelRatio(24 + 5) * 2, 0, 'sprites', 'ui-life-001.png');
 
-    const container = new Phaser.GameObjects.Container(this, 0, adjustForPixelRatio(8 + 16), [
+    const container = new Phaser.GameObjects.Container(this, 0, adjustForPixelRatio(8 + 12), [
       this.lifeSprite1,
       this.lifeSprite2,
       this.lifeSprite3,

@@ -76,12 +76,12 @@ export function createScoreText(scene: Phaser.Scene): (score: Score) => void {
   };
 
   const presentSprite = scene.add
-    .sprite(scene.scale.width - adjustForPixelRatio(8 + 24 - 16), adjustForPixelRatio(8 + 12), 'sprites', 'ui-present-001.png')
+    .sprite(scene.scale.width - adjustForPixelRatio(8 + 12), adjustForPixelRatio(8 + 12), 'sprites', 'ui-present-001.png')
     .setScrollFactor(0)
     .setOrigin(0.5, 0.5);
 
   const textElement = scene.add
-    .text(presentSprite.x, presentSprite.y + adjustForPixelRatio(5), '', {
+    .text(presentSprite.x, presentSprite.y + adjustForPixelRatio(3), '', {
       fontSize: `${adjustForPixelRatio(17)}px`,
       color: '#fff',
       stroke: '#000',
@@ -99,7 +99,7 @@ export function createScoreText(scene: Phaser.Scene): (score: Score) => void {
   const updateScoreText = (score: Score) => {
     if (!hasChangedFontSize && score.currentScore > 99) {
       console.log('Minske skrift', textElement.style.fontSize);
-      textElement.setFontSize(adjustForPixelRatio(15));
+      textElement.setFontSize(adjustForPixelRatio(10));
       // textElement.setPadding({ top: adjustForPixelRatio(12) });
       hasChangedFontSize = true;
     }
