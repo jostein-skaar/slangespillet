@@ -58,6 +58,11 @@ export class MainScene extends Phaser.Scene {
 
     this.cameras.main.startFollow(this.hero.sprite);
     this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+    // If portrait, we want our hero to be a little more to the left to be able to see what is in front.
+    if (this.scale.height > this.scale.width) {
+      const followOffset = -this.scale.width / 4;
+      this.cameras.main.setFollowOffset(followOffset);
+    }
 
     this.restartGameFn = () => {
       this.score.reset();
