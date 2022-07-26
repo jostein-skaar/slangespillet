@@ -6,8 +6,8 @@ export function preload(scene: Phaser.Scene) {
   scene.load.multiatlas('sprites', `/assets/sprites@${adjustForPixelRatio(1)}.json?v={VERSJON}`, '/assets');
 
   scene.load.spritesheet('present', `/assets/presents@${adjustForPixelRatio(1)}.png?v={VERSJON}`, {
-    frameWidth: adjustForPixelRatio(32),
-    frameHeight: adjustForPixelRatio(32),
+    frameWidth: adjustForPixelRatio(24),
+    frameHeight: adjustForPixelRatio(24),
     margin: adjustForPixelRatio(1),
     spacing: adjustForPixelRatio(2),
   });

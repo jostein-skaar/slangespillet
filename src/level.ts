@@ -16,14 +16,12 @@ export class Level {
   ladderGroup: Phaser.Physics.Arcade.Group;
   color = new Phaser.Display.Color();
   finished = false;
-  // offsetY = 0;
 
   constructor(scene: Phaser.Scene, map: Phaser.Tilemaps.Tilemap, level: number, hero: Hero) {
     this.scene = scene;
     this.map = map;
     this.level = level;
     this.hero = hero;
-    // this.offsetY = adjustForPixelRatio(scene.scale.height - 11 * 32);
 
     this.finishSprite = scene.physics.add.sprite(0, 0, 'sprites', 'object-moringa-001.png');
     this.finishSprite.setSize(adjustForPixelRatio(1), this.scene.scale.height * 2);

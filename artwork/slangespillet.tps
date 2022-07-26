@@ -211,6 +211,12 @@
             <key type="filename">../../common-game/artwork/icons/icon-gear-001.png</key>
             <key type="filename">../../common-game/artwork/icons/icon-gear-002.png</key>
             <key type="filename">../../common-game/artwork/icons/icon-pause-001.png</key>
+            <key type="filename">../../common-game/artwork/particles/particle-snowflake-001.png</key>
+            <key type="filename">../../common-game/artwork/particles/particle-snowflake-002.png</key>
+            <key type="filename">../../common-game/artwork/particles/particle-snowflake-003.png</key>
+            <key type="filename">../../common-game/artwork/particles/particle-star-001.png</key>
+            <key type="filename">assets/ui/ui-life-001.png</key>
+            <key type="filename">assets/ui/ui-present-001.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -284,6 +290,7 @@
             </struct>
             <key type="filename">assets/hero/hero-005.png</key>
             <key type="filename">assets/hero/hero-006.png</key>
+            <key type="filename">assets/hero/hero-007.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -298,12 +305,61 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">assets/hero/hero-008.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>24,40,48,80</rect>
+                <key>scale9Paddings</key>
+                <rect>24,40,48,80</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">assets/objects/object-moringa-001.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>100,200,200,400</rect>
+                <key>scale9Paddings</key>
+                <rect>100,200,200,400</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">assets/objects/object-moringa-002.png</key>
+            <key type="filename">assets/objects/object-moringa-003.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>40,50,80,100</rect>
+                <key>scale9Paddings</key>
+                <rect>40,50,80,100</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
         </map>
         <key>fileList</key>
         <array>
             <filename>assets/hero</filename>
             <filename>assets/enemy</filename>
             <filename>../../common-game/artwork/icons</filename>
+            <filename>assets/ui</filename>
+            <filename>../../common-game/artwork/particles</filename>
+            <filename>assets/objects</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

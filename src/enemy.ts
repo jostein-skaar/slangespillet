@@ -2,8 +2,8 @@ import { adjustForPixelRatio } from '@jostein-skaar/common-game';
 import { Position } from './move-to-npm/position';
 
 export class Enemy extends Phaser.GameObjects.Container {
-  static width = adjustForPixelRatio(80);
-  static height = adjustForPixelRatio(35);
+  static width = adjustForPixelRatio(54);
+  static height = adjustForPixelRatio(24);
   private direction = 1;
   private static isInitialized = false;
   leftPosition!: Position;
@@ -22,7 +22,6 @@ export class Enemy extends Phaser.GameObjects.Container {
 
     this.setSize(Enemy.width, Enemy.height);
 
-    // this.enemyC.setSize(120, 50);
     const tounge = scene.add.sprite(0, 0, 'sprites', 'enemy-tounge-001.png');
     tounge.play('enemy-tounge', true);
     this.add(tounge);

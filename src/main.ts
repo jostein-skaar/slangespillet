@@ -14,7 +14,7 @@ if (import.meta.env.PROD) {
 
 // TODO: GET ALL THIS FROM  common-game package
 
-// const maxWidthMap = 3200; // 100 * 32;
+// const maxWidthMap = 2400; // 100 * 24;
 const maxWidth = 1080;
 const maxHeight = 1080;
 

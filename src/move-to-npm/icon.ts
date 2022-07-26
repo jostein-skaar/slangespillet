@@ -9,7 +9,7 @@ export class Icon {
     color: number,
     fill: number,
     callbackFn: () => void,
-    size: number = adjustForPixelRatio(32)
+    size: number = adjustForPixelRatio(24)
   ) {
     scene.add
       .sprite(x, y, 'sprites', 'icon-bg-001.png')

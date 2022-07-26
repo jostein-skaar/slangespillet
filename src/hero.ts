@@ -15,7 +15,7 @@ export class Hero {
   isEating = false;
   isDead = false;
   speedX = adjustForPixelRatio(100);
-  speedY = adjustForPixelRatio(-200);
+  speedY = adjustForPixelRatio(-180);
   isHurting = false;
   isPotentialHurting = false;
   hurtTween: Phaser.Tweens.Tween;
@@ -24,10 +24,10 @@ export class Hero {
 
   constructor(scene: Phaser.Scene) {
     this.scene = scene;
-    this.width = adjustForPixelRatio(70);
-    this.height = adjustForPixelRatio(55);
-    this.widthClimbing = adjustForPixelRatio(32);
-    this.heightClimbing = adjustForPixelRatio(70);
+    this.width = adjustForPixelRatio(40);
+    this.height = adjustForPixelRatio(32);
+    this.widthClimbing = adjustForPixelRatio(20);
+    this.heightClimbing = adjustForPixelRatio(40);
 
     this.sprite = scene.physics.add.sprite(0, 0, 'sprites', 'hero-001.png');
     this.createAnimations();

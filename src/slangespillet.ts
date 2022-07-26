@@ -76,7 +76,7 @@ export function createScoreText(scene: Phaser.Scene): (score: Score) => void {
   };
 
   const presentSprite = scene.add
-    .sprite(scene.scale.width - adjustForPixelRatio(8 + 32 - 16), adjustForPixelRatio(8 + 16), 'sprites', 'ui-present-001.png')
+    .sprite(scene.scale.width - adjustForPixelRatio(8 + 24 - 16), adjustForPixelRatio(8 + 12), 'sprites', 'ui-present-001.png')
     .setScrollFactor(0)
     .setOrigin(0.5, 0.5);
 
@@ -87,7 +87,7 @@ export function createScoreText(scene: Phaser.Scene): (score: Score) => void {
       stroke: '#000',
       fontStyle: 'bold',
       strokeThickness: adjustForPixelRatio(2),
-      fixedWidth: adjustForPixelRatio(32),
+      fixedWidth: adjustForPixelRatio(24),
       align: 'center',
 
       // backgroundColor: '#000',

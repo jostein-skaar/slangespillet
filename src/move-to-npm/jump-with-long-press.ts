@@ -7,8 +7,8 @@ export function jumpWithLongPress(
   ladderClimbing: LadderClimbing
 ): () => boolean {
   const maxJumpingTime = 500;
-  const safeMarginTop = adjustForPixelRatio(8 + 32 + 8);
-  const noJumpZoneX = adjustForPixelRatio(3200 - 200);
+  const safeMarginTop = adjustForPixelRatio(8 + 24 + 8);
+  const noJumpZoneX = adjustForPixelRatio(2400 - 200);
   let jumpTime = 0;
 
   return () => {

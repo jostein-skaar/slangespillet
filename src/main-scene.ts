@@ -57,7 +57,7 @@ export class MainScene extends Phaser.Scene {
     });
 
     this.cameras.main.startFollow(this.hero.sprite);
-    this.cameras.main.setBounds(0, this.map.heightInPixels - this.scale.height, this.map.widthInPixels, this.scale.height);
+    this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 
     this.restartGameFn = () => {
       this.score.reset();
@@ -139,8 +139,8 @@ export class MainScene extends Phaser.Scene {
 
   private createLifes() {
     this.lifeSprite1 = this.add.sprite(0, 0, 'sprites', 'ui-life-001.png');
-    this.lifeSprite2 = this.add.sprite(adjustForPixelRatio(32 + 5), 0, 'sprites', 'ui-life-001.png');
-    this.lifeSprite3 = this.add.sprite(adjustForPixelRatio(32 + 5) * 2, 0, 'sprites', 'ui-life-001.png');
+    this.lifeSprite2 = this.add.sprite(adjustForPixelRatio(24 + 5), 0, 'sprites', 'ui-life-001.png');
+    this.lifeSprite3 = this.add.sprite(adjustForPixelRatio(24 + 5) * 2, 0, 'sprites', 'ui-life-001.png');
 
     const container = new Phaser.GameObjects.Container(this, 0, adjustForPixelRatio(8 + 16), [
       this.lifeSprite1,
