@@ -4,6 +4,8 @@ import { Position } from './move-to-npm/position';
 export class Enemy extends Phaser.GameObjects.Container {
   static width = adjustForPixelRatio(54);
   static height = adjustForPixelRatio(24);
+  static collisionWidth = adjustForPixelRatio(40);
+  static collisionHeight = adjustForPixelRatio(16);
   private direction = 1;
   private static isInitialized = false;
   leftPosition!: Position;
@@ -21,7 +23,8 @@ export class Enemy extends Phaser.GameObjects.Container {
 
     scene.add.existing(this);
 
-    this.setSize(Enemy.width * 0.8, Enemy.height * 0.8);
+    this.setSize(Enemy.collisionWidth, Enemy.collisionHeight);
+    //scene.physics.add.existing(this);
 
     const tounge = scene.add.sprite(0, 0, 'sprites', 'enemy-tounge-001.png');
     tounge.play('enemy-tounge', true);
@@ -44,6 +47,12 @@ export class Enemy extends Phaser.GameObjects.Container {
     this.add(eye);
 
     this.setPositions(startPositionInMap, endPositionInMap);
+  }
+
+  initAfterPhysics() {
+    const body = this.body as Phaser.Physics.Arcade.Body;
+
+    body.setOffset(0, (Enemy.height - Enemy.collisionHeight) / 2);
   }
 
   preUpdate(_time: number, _delta: number) {

@@ -45,7 +45,7 @@ export class Level {
 
     const tiles = map.getTileset('tiles');
 
-    this.platformLayer = map.createLayer(`level${level}/level`, [tiles]);
+    this.platformLayer = map.createLayer(`level${level}/platform`, [tiles]);
     this.platformLayer.setCollisionByProperty({ ground: true }, true, false);
     this.presentsLayer = map.createLayer(`level${level}/presents`, [tiles]);
 
@@ -59,6 +59,7 @@ export class Level {
     });
 
     scene.physics.add.collider(this.hero.sprite, this.platformLayer, (_hero, tile: any) => {
+      // TODO: Fix bug when hitting lava stone from under
       if (tile.properties.lava || tile.properties.water) {
         this.hero.isPotentialHurting = true;
       }
@@ -143,6 +144,7 @@ export class Level {
       if (enemy === null) {
         enemy = new Enemy(this.scene, startPositionInMap, endPositionInMap, this.color.random(60, 240).color);
         this.enemyGroup.add(enemy);
+        enemy.initAfterPhysics();
       } else {
         enemy.reset(startPositionInMap, endPositionInMap);
       }
