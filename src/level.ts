@@ -58,10 +58,11 @@ export class Level {
       }
     });
 
-    scene.physics.add.collider(this.hero.sprite, this.platformLayer, (_hero, tile: any) => {
-      // TODO: Fix bug when hitting lava stone from under
+    scene.physics.add.collider(this.hero.sprite, this.platformLayer, (hero: any, tile: any) => {
       if (tile.properties.lava || tile.properties.water) {
-        this.hero.isPotentialHurting = true;
+        if (hero.body.onFloor()) {
+          this.hero.isPotentialHurting = true;
+        }
       }
     });
 
