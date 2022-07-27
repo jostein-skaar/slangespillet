@@ -21,7 +21,7 @@ export class Enemy extends Phaser.GameObjects.Container {
 
     scene.add.existing(this);
 
-    this.setSize(Enemy.width, Enemy.height);
+    this.setSize(Enemy.width * 0.8, Enemy.height * 0.8);
 
     const tounge = scene.add.sprite(0, 0, 'sprites', 'enemy-tounge-001.png');
     tounge.play('enemy-tounge', true);
