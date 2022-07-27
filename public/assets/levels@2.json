@@ -6155,18 +6155,6 @@
             {
               "class": "",
               "height": 0,
-              "id": 194,
-              "name": "start",
-              "point": true,
-              "rotation": 0,
-              "visible": true,
-              "width": 0,
-              "x": 96,
-              "y": 672
-            },
-            {
-              "class": "",
-              "height": 0,
               "id": 195,
               "name": "finish",
               "point": true,
@@ -6532,6 +6520,18 @@
               "width": 0,
               "x": 2688,
               "y": 192
+            },
+            {
+              "class": "",
+              "height": 0,
+              "id": 257,
+              "name": "start",
+              "point": true,
+              "rotation": 0,
+              "visible": true,
+              "width": 0,
+              "x": 3168,
+              "y": 672
             }
           ],
           "opacity": 1,
@@ -6550,7 +6550,7 @@
     }
   ],
   "nextlayerid": 41,
-  "nextobjectid": 257,
+  "nextobjectid": 258,
   "orientation": "orthogonal",
   "renderorder": "left-up",
   "tiledversion": "1.9.0",

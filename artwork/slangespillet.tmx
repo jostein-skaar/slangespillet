@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.0" orientation="orthogonal" renderorder="left-up" width="100" height="15" tilewidth="24" tileheight="24" infinite="0" nextlayerid="41" nextobjectid="257">
+<map version="1.9" tiledversion="1.9.0" orientation="orthogonal" renderorder="left-up" width="100" height="15" tilewidth="24" tileheight="24" infinite="0" nextlayerid="41" nextobjectid="259">
  <editorsettings>
   <export target="../public/assets/levels@1.json" format="json"/>
  </editorsettings>
@@ -99,9 +99,6 @@
 </data>
   </layer>
   <objectgroup id="40" name="data">
-   <object id="194" name="start" x="48" y="336">
-    <point/>
-   </object>
    <object id="195" name="finish" x="2352" y="336">
     <point/>
    </object>
@@ -155,6 +152,9 @@
    </object>
    <object id="256" name="enemy" x="1344" y="96">
     <polyline points="80,0 200,0"/>
+   </object>
+   <object id="258" name="start" x="48" y="336">
+    <point/>
    </object>
   </objectgroup>
  </group>
