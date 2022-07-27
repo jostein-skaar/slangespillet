@@ -6524,13 +6524,13 @@
             {
               "class": "",
               "height": 0,
-              "id": 257,
+              "id": 258,
               "name": "start",
               "point": true,
               "rotation": 0,
               "visible": true,
               "width": 0,
-              "x": 4752,
+              "x": 144,
               "y": 1008
             }
           ],
@@ -6550,7 +6550,7 @@
     }
   ],
   "nextlayerid": 41,
-  "nextobjectid": 258,
+  "nextobjectid": 259,
   "orientation": "orthogonal",
   "renderorder": "left-up",
   "tiledversion": "1.9.0",
