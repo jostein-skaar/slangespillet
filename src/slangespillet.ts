@@ -82,7 +82,7 @@ export function createScoreText(scene: Phaser.Scene): (score: Score) => void {
 
   const textElement = scene.add
     .text(presentSprite.x, presentSprite.y + adjustForPixelRatio(3), '', {
-      fontSize: `${adjustForPixelRatio(17)}px`,
+      fontSize: `${adjustForPixelRatio(15)}px`,
       color: '#fff',
       stroke: '#000',
       fontStyle: 'bold',

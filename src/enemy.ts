@@ -9,6 +9,7 @@ export class Enemy extends Phaser.GameObjects.Container {
   leftPosition!: Position;
   rightPosition!: Position;
   isDead = false;
+  speedX = adjustForPixelRatio(40);
 
   constructor(scene: Phaser.Scene, startPositionInMap: Position, endPositionInMap: Position, color: number) {
     super(scene, 0, 0, undefined);
@@ -48,7 +49,7 @@ export class Enemy extends Phaser.GameObjects.Container {
   preUpdate(_time: number, _delta: number) {
     const body = this.body as Phaser.Physics.Arcade.Body;
 
-    body.setVelocityX(this.direction * 40);
+    body.setVelocityX(this.direction * this.speedX);
 
     if (this.direction === 1 && this.x >= this.rightPosition.x) {
       this.direction = -1;

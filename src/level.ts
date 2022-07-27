@@ -67,11 +67,14 @@ export class Level {
     scene.physics.add.overlap(this.hero.sprite, this.finishSprite, (_helt, _finish) => {
       if (!this.finished) {
         this.finishSprite.setRotation(0.4);
+        // Hack to be able to have overlap even thoug the sprite is moved a little to the right.
+        this.finishSprite.setSize(adjustForPixelRatio(50), adjustForPixelRatio(50));
         this.scene.events.emit('level-finished');
         this.finished = true;
         this.finishSprite.anims.play('moringa-eaten');
+        this.finishSprite.setY(this.finishSprite.y + adjustForPixelRatio(3));
       }
-      this.finishSprite.setX(this.hero.sprite.x + this.hero.width / 2);
+      this.finishSprite.setX(this.hero.sprite.x + this.hero.width / 2 + adjustForPixelRatio(6));
     });
 
     this.reset();
@@ -97,6 +100,7 @@ export class Level {
     const x = finishPoint!.x as number;
     const y = (finishPoint!.y as number) - this.finishSprite.height / 2;
     this.finishSprite.setPosition(x, y);
+    this.finishSprite.setSize(adjustForPixelRatio(1), this.scene.scale.height * 2);
   }
 
   private resetPresents() {
